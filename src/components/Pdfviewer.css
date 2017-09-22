@@ -1,0 +1,9 @@
+.Pdfviewer {
+  background: lavenderblush;
+  position: relative;
+}
+
+.Pdfviewer-controls {
+  position: fixed;
+  bottom: 7vh; /* bottom is 5vh plus 2 for the scrollbar */
+}

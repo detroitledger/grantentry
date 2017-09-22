@@ -8,6 +8,7 @@ const byId = (state = {}, action = { type: null }) => {
           ...action.response,
         };
       }
+      break;
     default:
       return state;
   }

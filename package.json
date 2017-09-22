@@ -3,6 +3,29 @@
   "homepage": "https://data.detroitledger.org/profiles/gnl_profile/grantentry/build/",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/user": {
+      "target": "http://127.0.0.1:8888"
+    },
+    "/services": {
+      "target": "http://127.0.0.1:8888"
+    },
+    "/api": {
+      "target": "http://127.0.0.1:8888"
+    },
+    "/node/add": {
+      "target": "http://127.0.0.1:8888"
+    },
+    "/index.php": {
+      "target": "http://127.0.0.1:8888"
+    },
+    "/grantentrypdfs": {
+      "target": "http://127.0.0.1:8888",
+      "pathRewrite": {
+        "^/grantentrypdfs": "/sites/default/files/grantentrypdfs"
+      }
+    }
+  },
   "dependencies": {
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",

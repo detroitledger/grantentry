@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ListableUserpdf = ({ onClick, userpdf }) => (
+const ListableUserpdf = ({ onClick, makeToggleDoneHandler, userpdf }) => (
   <li
     onClick={onClick.bind(this, userpdf.id)}
     style={{
@@ -9,11 +9,14 @@ const ListableUserpdf = ({ onClick, userpdf }) => (
     }}
   >
     {userpdf.org.name}
+    &nbsp;
+    <input type="checkbox" checkedLink={makeToggleDoneHandler(userpdf.id)} />
   </li>
 );
 
 ListableUserpdf.propTypes = {
   onClick: PropTypes.func.isRequired,
+  makeToggleDoneHandler: PropTypes.func.isRequired,
   userpdf: PropTypes.shape({
     id: PropTypes.number.isRequired,
     org: PropTypes.shape({

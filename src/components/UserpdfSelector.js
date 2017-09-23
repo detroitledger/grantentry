@@ -24,6 +24,16 @@ class UserpdfSelector extends Component {
     fetchUserpdfs(filter);
   }
 
+  makeToggleDoneHandler = (userpdf) => {
+    const { updateUserpdf } = this.props;
+    return {
+      value: userpdf.done,
+      requestChange(newValue) {
+        updateUserpdf(userpdf.id, userpdf.currentpg, newValue);
+      }
+    };
+  }
+
   render() {
     const { isFetching, errorMessage, userpdfs } = this.props;
     if (isFetching && !userpdfs.length) {
@@ -41,6 +51,7 @@ class UserpdfSelector extends Component {
     return (
       <ListUserpdfs
         userpdfs={userpdfs}
+        makeToggleDoneHandler={this.makeToggleDoneHandler}
       />
     );
   }
@@ -52,6 +63,7 @@ UserpdfSelector.propTypes = {
   userpdfs: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchUserpdfs: PropTypes.func.isRequired,
+  updateUserpdf: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

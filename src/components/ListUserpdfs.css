@@ -1,0 +1,18 @@
+.ListUserpdfs a:link,
+.ListUserpdfs a:visited,
+.ListUserpdfs a:active {
+  color: rebeccapurple;
+  text-decoration: none;
+}
+
+.ListUserpdfs a:hover {
+  color: forestgreen;
+  text-decoration: underline;
+}
+
+.ListUserpdfs-toggle_active {
+  opacity: 1;
+}
+.ListUserpdfs-toggle_completed {
+  opacity: .5;
+}

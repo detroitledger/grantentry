@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './ListUserpdfs.css';
 
-const ListUserpdfs = ({ userpdfs, onUserpdfClick }) => (
-  <ul>
+const ListUserpdfs = ({ userpdfs, makeToggleDoneHandler }) => (
+  <ul className="ListUserpdfs">
     {userpdfs.map(userpdf =>
       <li key={userpdf.id}>
-        <Link to={'/' + userpdf.id}>
+        <Link to={'/' + userpdf.id} className={userpdf.done ? 'ListUserpdfs-toggle_completed' : 'ListUserpdfs-toggle_active'}>
           {userpdf.org.name} ({userpdf.year})
         </Link>
+        <input type="checkbox" checkedLink={makeToggleDoneHandler(userpdf)} />
       </li>
     )}
   </ul>
 );
 
 ListUserpdfs.propTypes = {
+  makeToggleDoneHandler: PropTypes.func.isRequired,
   userpdfs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     org: PropTypes.shape({

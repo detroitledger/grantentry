@@ -5,22 +5,28 @@
   "private": true,
   "proxy": {
     "/user": {
-      "target": "http://127.0.0.1:8888"
+      "target": "https://data.detroitledger.org",
+      "secure": false
     },
     "/services": {
-      "target": "http://127.0.0.1:8888"
+      "target": "https://data.detroitledger.org",
+      "secure": false
     },
     "/api": {
-      "target": "http://127.0.0.1:8888"
+      "target": "https://data.detroitledger.org",
+      "secure": false
     },
     "/node/add": {
-      "target": "http://127.0.0.1:8888"
+      "target": "https://data.detroitledger.org",
+      "secure": false
     },
     "/index.php": {
-      "target": "http://127.0.0.1:8888"
+      "target": "https://data.detroitledger.org",
+      "secure": false
     },
     "/grantentrypdfs": {
-      "target": "http://127.0.0.1:8888",
+      "target": "https://data.detroitledger.org",
+      "secure": false,
       "pathRewrite": {
         "^/grantentrypdfs": "/sites/default/files/grantentrypdfs"
       }

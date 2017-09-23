@@ -5,32 +5,15 @@ Open `chrome://inspect/#devices` in a Chrome tab
 Run `./node_modules/.bin/react-scripts --inspect-brk test --runInBand --no-cache --env=jsdom src/actions/index.test.js` (or whatever test you want to run, or just leave off the name to run all tests)
 Go to the Chrome tab and attach to the new target.
 
-## Local dev with both backend server & this thing running
+OR... use vs code & the config recommended in the jest docs.
 
-While it's possible to access the grantentry dash from its production home within the Drupal docroot, it's ideal to have it served by the create-react-app setup so it live reloads & does the development (vs production) build. Doing it this way means you have two local servers running on different ports (8888 by default for the drupal `drush rs` server, and 3000 by default for cra's builtin server). This means we have to do some trickery to allow for cross origin requests:
+## Local dev with proxy to prod server
 
-Run `drush vset x_frame_options 0 --format=boolean` to allow cross-origin iframe embedding
+Start the create-react-app server with `HTTPS=true yarn start` and the cra proxy will forward requests to the prod server.
 
-Apply this diff to allow cross-origin cookiepassing:
-```
-diff --git a/modules/custom/gnl_api/gnl_api.module b/modules/custom/gnl_api/gnl_api.module
-index d67992d..08752f3 100644
---- a/modules/custom/gnl_api/gnl_api.module
-+++ b/modules/custom/gnl_api/gnl_api.module
-@@ -30,6 +30,8 @@ function gnl_api_init() {
-   if ($method == 'OPTIONS') {
-     exit; // CORS client gets what it wants
-   }
-+
-+  drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
- }
+Log in with your account at `https://127.0.0.1:3000/user` -- you will get redirected after logging in but just flip back to `https://127.0.0.1/user` to verify that you are logged in. Add some PDFs for yourself as documented [in our prototype doc](https://docs.google.com/document/d/1n5cPukP2cEdlmCV9YqwgpYyOITPaiuxjiir-rX7P4ec/edit#heading=h.44ejuwli3tac)
 
- /**
-```
-
-Start the drupal 7 server with `drush rs` in the root directory
-
-Start the create-react-app server with `yarn start`
+Now, navigate to `https://127.0.0.1:3000` and the react app should load up just fine.
 
 # create-react-app docs
 

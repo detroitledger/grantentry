@@ -53,9 +53,9 @@ const mapStateToProps = (state, { match: { params } }) => {
   };
 };
 
-Addgrantframe = withRouter(connect(
+const AddgrantframeWrapped = withRouter(connect(
   mapStateToProps,
   actions
 )(Addgrantframe));
 
-export default Addgrantframe;
+export default AddgrantframeWrapped;

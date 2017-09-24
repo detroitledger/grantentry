@@ -15,6 +15,10 @@ Log in with your account at `https://127.0.0.1:3000/user` -- you will get redire
 
 Now, navigate to `https://127.0.0.1:3000` and the react app should load up just fine.
 
+## Run tests
+
+Use `yarn test` to run the jest unit tests, and `yarn lint` to run eslint. Our circleci bot will run both the linter and jest suites.
+
 # create-react-app docs
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

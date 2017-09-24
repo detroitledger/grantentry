@@ -77,9 +77,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-UserpdfSelector = withRouter(connect(
+const UserpdfSelectorWrapped = withRouter(connect(
   mapStateToProps,
   actions
 )(UserpdfSelector));
 
-export default UserpdfSelector;
+export default UserpdfSelectorWrapped;

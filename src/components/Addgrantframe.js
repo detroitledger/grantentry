@@ -34,7 +34,7 @@ class Addgrantframe extends Component {
 
 Addgrantframe.propTypes = {
   haspdfs: PropTypes.bool,
-  userpdfId: PropTypes.string,
+  userpdfId: PropTypes.string,  
   userpdfs: PropTypes.array,
   isFetching: PropTypes.bool.isRequired
 };

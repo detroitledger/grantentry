@@ -44,6 +44,6 @@ PdfviewerContainer.propTypes = {
   userpdfs: PropTypes.array
 };
 
-PdfviewerContainer = withPdfs(PdfviewerContainer);
+const PdfviewerContainerWrapped = withPdfs(PdfviewerContainer);
 
-export default PdfviewerContainer;
+export default PdfviewerContainerWrapped;

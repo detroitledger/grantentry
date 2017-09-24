@@ -40,6 +40,8 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
+  fetchUserpdfs: PropTypes.func.isRequired,
+  fetchCurrentUser: PropTypes.func.isRequired,
   isFetchingUserpdfs: PropTypes.bool.isRequired,
   orgname: PropTypes.string,
   username: PropTypes.string
@@ -69,6 +71,9 @@ const mapStateToProps = (state, { match: { params } }) => {
   };
 };
 
-Topbar = withRouter(connect(mapStateToProps, actions)(Topbar));
+const TopbarWrapped = withRouter(connect(
+  mapStateToProps,
+  actions
+)(Topbar));
 
-export default Topbar;
+export default TopbarWrapped;

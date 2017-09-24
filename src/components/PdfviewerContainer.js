@@ -53,9 +53,9 @@ const mapStateToProps = (state, { match: { params } }) => {
   };
 };
 
-PdfviewerContainer = withRouter(connect(
+const PdfviewerContainerWrapped = withRouter(connect(
   mapStateToProps,
   actions
 )(PdfviewerContainer));
 
-export default PdfviewerContainer;
+export default PdfviewerContainerWrapped;

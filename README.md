@@ -11,9 +11,9 @@ OR... use vs code & the config recommended in the jest docs.
 
 Start the create-react-app server with `HTTPS=true yarn start` and the cra proxy will forward requests to the prod server.
 
-Log in with your account at `https://127.0.0.1:3000/user` -- you will get redirected after logging in but just flip back to `https://127.0.0.1/user` to verify that you are logged in. Add some PDFs for yourself as documented [in our prototype doc](https://docs.google.com/document/d/1n5cPukP2cEdlmCV9YqwgpYyOITPaiuxjiir-rX7P4ec/edit#heading=h.44ejuwli3tac)
+Log in with your account at `https://localhost:3000/user` -- you will get redirected after logging in but just flip back to `https://localhost/user` to verify that you are logged in. Add some PDFs for yourself as documented [in our prototype doc](https://docs.google.com/document/d/1n5cPukP2cEdlmCV9YqwgpYyOITPaiuxjiir-rX7P4ec/edit#heading=h.44ejuwli3tac)
 
-Now, navigate to `https://127.0.0.1:3000` and the react app should load up just fine.
+Now, navigate to `https://localhost:3000` and the react app should load up just fine.
 
 ## Run tests
 

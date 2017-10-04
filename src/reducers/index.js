@@ -8,14 +8,14 @@ import user from './user';
 const listByFilter = combineReducers({
   all: createList('all'),
   active: createList('active'),
-  completed: createList('completed'),
+  completed: createList('completed')
 });
 
 const rootReducer = combineReducers({
   byId,
   listByFilter,
   user,
-  router,
+  router
 });
 
 export default rootReducer;
@@ -23,6 +23,14 @@ export default rootReducer;
 export const getVisibleUserpdfs = (state, filter) => {
   const ids = fromList.getIds(state.listByFilter[filter]);
   return ids.map(id => fromById.getUserpdf(state.byId, id));
+};
+
+export const getHasPDFs = (pdfs, pdfId) => {
+  return !(
+    !pdfs.length ||
+    !pdfId ||
+    !pdfs.find(p => p.id === parseInt(pdfId, 10))
+  );
 };
 
 export const getIsFetching = (state, filter) =>

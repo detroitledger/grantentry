@@ -25,11 +25,14 @@ class Topbar extends Component {
     return (
       <div className="Topbar">
         <div className="Topbar-title">
-          Ledger Data Entry: <span className="orgname">{this.props.orgname}</span>
+          Ledger Data Entry:{' '}
+          <span className="orgname">{this.props.orgname}</span>
         </div>
         <div className="Topbar-userwidget">
           <span className="Topbar-username">{this.props.username}</span>
-          <a href={LOGOUT_LINK}>log out</a>
+          <span>
+            <a href={LOGOUT_LINK}>log out</a>
+          </span>
         </div>
       </div>
     );
@@ -41,7 +44,7 @@ Topbar.propTypes = {
   fetchCurrentUser: PropTypes.func.isRequired,
   isFetchingUserpdfs: PropTypes.bool.isRequired,
   orgname: PropTypes.string,
-  username: PropTypes.string,
+  username: PropTypes.string
 };
 
 const mapStateToProps = (state, { match: { params } }) => {
@@ -49,8 +52,14 @@ const mapStateToProps = (state, { match: { params } }) => {
   let orgname = null;
 
   const userpdfs = getVisibleUserpdfs(state, 'all');
-  if (userpdfs.find(function(p) { return p.id === parseInt(userpdfId, 10)})) {
-    orgname = userpdfs.find(function(p) { return p.id === parseInt(userpdfId, 10)}).org.name;
+  if (
+    userpdfs.find(function(p) {
+      return p.id === parseInt(userpdfId, 10);
+    })
+  ) {
+    orgname = userpdfs.find(function(p) {
+      return p.id === parseInt(userpdfId, 10);
+    }).org.name;
   }
 
   return {
@@ -58,7 +67,7 @@ const mapStateToProps = (state, { match: { params } }) => {
     isFetchingSessioninfo: state.user.isFetching,
     userpdfId,
     orgname,
-    username: state.user.name,
+    username: state.user.name
   };
 };
 

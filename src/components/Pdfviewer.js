@@ -9,7 +9,12 @@ class Pdfviewer extends Component {
   state = {};
 
   onDocumentComplete = (pages) => {
-    this.setState({ scale: 1, page: this.props.currentpg, pages });
+    this.setState({
+      scale: 1,
+      rotate: 0,
+      page: this.props.currentpg,
+      pages,
+    });
   }
 
   onPageComplete = (page) => {
@@ -42,6 +47,16 @@ class Pdfviewer extends Component {
     this.setState({ scale: this.state.scale - .25 });
   }
 
+  handleRotateCcw = () => {
+    // changing rotate to 0 does not trigger rerender, see bug
+    // https://github.com/mikecousins/react-pdf-js/issues/36
+    this.setState({ rotate: ((this.state.rotate - 90) % 360) + 360 });
+  }
+
+  handleRotateCw = () => {
+    this.setState({ rotate: ((this.state.rotate + 90) % 360) + 360 });
+  }
+
   renderPagination = (page, pages) => {
     let firstButton = <button className="first" onClick={this.handleFirst}>&laquo;</button>;
     let lastButton = <button className="last" onClick={this.handleLast}>&raquo;</button>;
@@ -70,6 +85,8 @@ class Pdfviewer extends Component {
       <span className="Pdfviewer-zoomer">
         <button onClick={this.handleZoomOut}>-</button>
         <button onClick={this.handleZoomIn}>+</button>
+        <button onClick={this.handleRotateCcw}>↶ </button>
+        <button onClick={this.handleRotateCw}>↷ </button>
       </span>
     );
   }
@@ -102,7 +119,7 @@ class Pdfviewer extends Component {
 
     return (
       <div className="Pdfviewer">
-        <PDF file={pdfurl} onDocumentComplete={this.onDocumentComplete} onPageComplete={this.onPageComplete} page={this.state.page} scale={this.state.scale} />
+        <PDF file={pdfurl} onDocumentComplete={this.onDocumentComplete} onPageComplete={this.onPageComplete} page={this.state.page} scale={this.state.scale} rotate={this.state.rotate} />
         <nav className="Pdfviewer-controls">
           {pagination}
           {zoomer}

@@ -41,7 +41,7 @@ PdfviewerContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   userpdfId: PropTypes.string,
-  userpdfs: PropTypes.array
+  userpdfs: PropTypes.array,
 };
 
 const PdfviewerContainerWrapped = withPdfs(PdfviewerContainer);

@@ -7,6 +7,9 @@ import * as actions from '../actions';
 import { getVisibleUserpdfs, getIsFetching } from '../reducers';
 import { API_HOST } from '../api';
 
+import DropdownUserpdfs from './DropdownUserpdfs';
+import UserpdfSelector from './UserpdfSelector';
+
 import './Topbar.css';
 
 class Topbar extends Component {
@@ -28,6 +31,8 @@ class Topbar extends Component {
           Ledger Data Entry:{' '}
           <span className="orgname">{this.props.orgname}</span>
         </div>
+        <DropdownUserpdfs pdfs={this.props.userpdfs}/>
+        <UserpdfSelector />
         <div className="Topbar-userwidget">
           <span className="Topbar-username">{this.props.username}</span>
           <span>

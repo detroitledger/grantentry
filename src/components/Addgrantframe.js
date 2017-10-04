@@ -39,6 +39,6 @@ Addgrantframe.propTypes = {
   isFetching: PropTypes.bool.isRequired,
 };
 
-Addgrantframe = withPdfs(Addgrantframe);
+const AddgrantframeWrapped = withPdfs(Addgrantframe);
 
-export default Addgrantframe;
+export default AddgrantframeWrapped;

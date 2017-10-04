@@ -38,7 +38,7 @@ export const updateUserpdf = (id, currentpg, done) => (dispatch) => {
       response,
     });
   });
-}
+};
 
 export const fetchCurrentUser = () => (dispatch) => {
   dispatch({
@@ -51,4 +51,4 @@ export const fetchCurrentUser = () => (dispatch) => {
       response,
     });
   });
-}
+};

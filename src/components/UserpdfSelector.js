@@ -5,8 +5,9 @@ import { withRouter } from 'react-router';
 
 import * as actions from '../actions';
 import { getVisibleUserpdfs, getErrorMessage, getIsFetching } from '../reducers';
-import ListUserpdfs from './ListUserpdfs';
+import DropdownUserpdfs from './DropdownUserpdfs';
 import FetchError from './FetchError';
+import { withPdfs } from '../containers/WithPdfs';
 
 class UserpdfSelector extends Component {
   componentDidMount() {
@@ -49,9 +50,9 @@ class UserpdfSelector extends Component {
     }
 
     return (
-      <ListUserpdfs
+      <DropdownUserpdfs
         userpdfs={userpdfs}
-        makeToggleDoneHandler={this.makeToggleDoneHandler}
+        dispatch={this.props.dispatch}
       />
     );
   }
@@ -64,6 +65,7 @@ UserpdfSelector.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchUserpdfs: PropTypes.func.isRequired,
   updateUserpdf: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -77,9 +79,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const UserpdfSelectorWrapped = withRouter(connect(
+let UserpdfSelectorWrapped = withRouter(connect(
   mapStateToProps,
   actions
 )(UserpdfSelector));
+
+UserpdfSelectorWrapped = withPdfs(UserpdfSelectorWrapped);
 
 export default UserpdfSelectorWrapped;

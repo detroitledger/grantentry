@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { push } from 'react-router-redux';
 import Dropdown from 'react-dropdown';
 import './DropdownUserpdfs.css';
 
-const options = [ 'one', 'two', 'three' ]
-const defaultOption = options[0]
-
 class DropdownUserpdfs extends Component {
-  componentDidMount() {
-  	console.log(this.props.pdfs);
+  _onSelect = ({value}) => {
+    this.props.dispatch(push('/' + value));
   }
-  
+
   render() {
-  	return (
-      <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select a 990" />
-  	)
+    const options = [];
+    for (let i = 0; i < this.props.userpdfs.length; i++) {
+      options.push({ value: this.props.userpdfs[i].id, label: this.props.userpdfs[i].org.name + ', ' + this.props.userpdfs[i].year });
+    }
+ 
+    if (this.props.userpdfs.length > 0) {
+      return (
+        <Dropdown options={options} onChange={this._onSelect} placeholder="Pick a 990" />
+      )
+    } else {
+       return (
+        <div>Loading...</div>
+      )
+    }
   }
 }
 
 DropdownUserpdfs.propTypes = {
-  pdfs: PropTypes.arrayOf(PropTypes.shape({
+  dispatch: PropTypes.func.isRequired,
+  userpdfs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     org: PropTypes.shape({
       id: PropTypes.number.isRequired,

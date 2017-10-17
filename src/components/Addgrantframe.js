@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
-import * as actions from '../actions';
-
-import { getVisibleUserpdfs, getIsFetching } from '../reducers';
-
+import { withPdfs } from '../containers/WithPdfs';
 import { API_HOST } from '../api';
 
 import './Addgrantframe.css';
 
 class Addgrantframe extends Component {
   render() {
-    const { isFetching, userpdfId, userpdfs } = this.props;
+    const { haspdfs, isFetching, userpdfId, userpdfs } = this.props;
 
     if (isFetching && !userpdfs.length) {
       return <p>Loading...</p>;
     }
 
-    if (!userpdfs.length || !userpdfId || !userpdfs.find(p => p.id === parseInt(userpdfId, 10))) {
-      return <p>Please specify a pdf in your todo list.</p>;
+    if (!haspdfs) {
+      return <p>Please select a PDF from your todo list below.</p>;
     }
 
     const selectedPdf = userpdfs.find(p => p.id === parseInt(userpdfId, 10));
@@ -31,31 +26,19 @@ class Addgrantframe extends Component {
 
     return (
       <div className="Addgrantframe">
-        <iframe title="add grant" src={iframeSrc}/>
+        <iframe title="add grant" src={iframeSrc} />
       </div>
     );
   }
 }
 
 Addgrantframe.propTypes = {
-  userpdfId: PropTypes.string,
+  haspdfs: PropTypes.bool,
+  userpdfId: PropTypes.string,  
   userpdfs: PropTypes.array,
   isFetching: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state, { match: { params } }) => {
-  const userpdfId = params.userpdf || null;
+const AddgrantframeWrapped = withPdfs(Addgrantframe);
 
-  return {
-    isFetching: getIsFetching(state, 'all'),
-    userpdfId,
-    userpdfs: getVisibleUserpdfs(state, 'all'),
-  };
-};
-
-Addgrantframe = withRouter(connect(
-  mapStateToProps,
-  actions
-)(Addgrantframe));
-
-export default Addgrantframe;
+export default AddgrantframeWrapped;

@@ -25,6 +25,14 @@ export const getVisibleUserpdfs = (state, filter) => {
   return ids.map(id => fromById.getUserpdf(state.byId, id));
 };
 
+export const getHasPDFs = (pdfs, pdfId) => {
+  return !(
+    !pdfs.length ||
+    !pdfId ||
+    !pdfs.find(p => p.id === parseInt(pdfId, 10))
+  );
+};
+
 export const getIsFetching = (state, filter) =>
   fromList.getIsFetching(state.listByFilter[filter]);
 

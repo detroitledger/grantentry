@@ -83,7 +83,7 @@ describe('update userpdf', () => {
             'done': false,
             'year': 2389,
             'currentpg': 6,
-          }
+          },
         },
       },
     ];
@@ -134,6 +134,7 @@ describe('update userpdf', () => {
 
     return store.dispatch(actions.updateUserpdf(2, 6, false)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
+      expect(nockScope.isDone()).toBe(true);
     });
   });
 });
@@ -186,6 +187,7 @@ describe('fetch current user information', () => {
 
     return store.dispatch(actions.fetchCurrentUser()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
+      expect(nockScope.isDone()).toBe(true);
     });
   });
 });

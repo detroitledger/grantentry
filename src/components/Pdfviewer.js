@@ -108,7 +108,7 @@ class Pdfviewer extends Component {
           {zoomer}
         </nav>
       </div>
-    )
+    );
   }
 }
 

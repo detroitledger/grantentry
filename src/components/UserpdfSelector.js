@@ -30,7 +30,7 @@ class UserpdfSelector extends Component {
       value: userpdf.done,
       requestChange(newValue) {
         updateUserpdf(userpdf.id, userpdf.currentpg, newValue);
-      }
+      },
     };
   }
 
@@ -77,9 +77,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-UserpdfSelector = withRouter(connect(
+const UserpdfSelectorWrapped = withRouter(connect(
   mapStateToProps,
   actions
 )(UserpdfSelector));
 
-export default UserpdfSelector;
+export default UserpdfSelectorWrapped;

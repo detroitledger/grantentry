@@ -1,33 +1,33 @@
-import reducer from './';
+import reducer, { getHasPDFs } from './';
 
 import { MOCK_API_RESPONSES } from '../actions/fixtures';
 import { normalizeToObject } from '../api';
 
 const emptyStore = {
-  "byId": {},
-  "listByFilter": {
-    "active": {
-      "errorMessage": null,
-      "ids": [],
-      "isFetching": false,
+  byId: {},
+  listByFilter: {
+    active: {
+      errorMessage: null,
+      ids: [],
+      isFetching: false,
     },
-    "all": {
-      "errorMessage": null,
-      "ids": [],
-      "isFetching": false,
+    all: {
+      errorMessage: null,
+      ids: [],
+      isFetching: false,
     },
-    "completed": {
-      "errorMessage": null,
-      "ids": [],
-      "isFetching": false,
+    completed: {
+      errorMessage: null,
+      ids: [],
+      isFetching: false,
     },
   },
-  "user": {
+  user: {
     id: null,
     name: null,
     isFetching: false,
   },
-  "router": { "location": null },
+  router: { location: null },
 };
 
 describe('big ol reducer', () => {
@@ -37,50 +37,53 @@ describe('big ol reducer', () => {
 
   it('should handle FETCH_USERPDFS_SUCCESS', () => {
     expect(
-      reducer({}, {
-        type: 'FETCH_USERPDFS_SUCCESS',
-        response: normalizeToObject(MOCK_API_RESPONSES.assignedPdfs),
-      })
+      reducer(
+        {},
+        {
+          type: 'FETCH_USERPDFS_SUCCESS',
+          response: normalizeToObject(MOCK_API_RESPONSES.assignedPdfs),
+        }
+      )
     ).toEqual({
-      "byId": {
-        "2": {
-          "currentpg": 5,
-          "done": true,
-          "id": 2,
-          "org": {
-            "id": 55,
-            "name": "Bollywood Music Festival - Michigan Philharmonic",
+      byId: {
+        '2': {
+          currentpg: 5,
+          done: true,
+          id: 2,
+          org: {
+            id: 55,
+            name: 'Bollywood Music Festival - Michigan Philharmonic',
           },
-          "pdfurl": "http://google.com/aliens-are-real.pdf",
-          "year": 2389,
+          pdfurl: 'http://google.com/aliens-are-real.pdf',
+          year: 2389,
         },
-        "3": {
-          "currentpg": 666,
-          "done": false,
-          "id": 3,
-          "org": {
-            "id": 10360,
-            "name": "SHA-SHA’S KIDDY KORNER CHILD CARE",
+        '3': {
+          currentpg: 666,
+          done: false,
+          id: 3,
+          org: {
+            id: 10360,
+            name: 'SHA-SHA’S KIDDY KORNER CHILD CARE',
           },
-          "pdfurl": "http://pdfs.com/pdf.pdf",
-          "year": 1983,
+          pdfurl: 'http://pdfs.com/pdf.pdf',
+          year: 1983,
         },
       },
-      "listByFilter": {
-        "active": {
-          "errorMessage": null,
-          "ids": [ "3" ],
-          "isFetching": false,
+      listByFilter: {
+        active: {
+          errorMessage: null,
+          ids: ['3'],
+          isFetching: false,
         },
-        "all": {
-          "errorMessage": null,
-          "ids": [ "2", "3" ],
-          "isFetching": false,
+        all: {
+          errorMessage: null,
+          ids: ['2', '3'],
+          isFetching: false,
         },
-        "completed": {
-          "errorMessage": null,
-          "ids": [ "2" ],
-          "isFetching": false,
+        completed: {
+          errorMessage: null,
+          ids: ['2'],
+          isFetching: false,
         },
       },
       user: {
@@ -88,22 +91,47 @@ describe('big ol reducer', () => {
         name: null,
         isFetching: false,
       },
-      "router": { "location": null },
+      router: { location: null },
     });
   });
 
   it('should handle FETCH_CURRENTUSER_REQUEST', () => {
-    const userpart = reducer({}, {
-      type: 'FETCH_CURRENTUSER_REQUEST',
-    }).user;
+    const userpart = reducer(
+      {},
+      {
+        type: 'FETCH_CURRENTUSER_REQUEST',
+      }
+    ).user;
     expect(userpart).toEqual({ id: null, name: null, isFetching: true });
   });
 
   it('should handle FETCH_CURRENTUSER_SUCCESS', () => {
-    const userpart = reducer({}, {
-      type: 'FETCH_CURRENTUSER_SUCCESS',
-      response: MOCK_API_RESPONSES.normalizedSystemConnect,
-    }).user;
+    const userpart = reducer(
+      {},
+      {
+        type: 'FETCH_CURRENTUSER_SUCCESS',
+        response: MOCK_API_RESPONSES.normalizedSystemConnect,
+      }
+    ).user;
     expect(userpart).toEqual({ id: '1', name: 'admin', isFetching: false });
+  });
+});
+
+describe('getHasPDFs', () => {
+  it('has no pdfs when array is empty', () => {
+    expect(getHasPDFs([])).toEqual(false);
+  });
+
+  it('has no pdfs when no id is specified', () => {
+    expect(getHasPDFs([{ id: 123 }])).toEqual(false);
+  });
+
+  it('has no pdfs when the id is not in the list', () => {
+    expect(getHasPDFs([{ id: 123 }], '456')).toEqual(false);
+  });
+
+  it('finds the right pdf in the list', () => {
+    expect(getHasPDFs([{ id: 123 }], '123')).toEqual(true);
+    expect(getHasPDFs([{ id: 123 }], 123)).toEqual(true);
   });
 });

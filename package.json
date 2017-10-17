@@ -1,6 +1,7 @@
 {
   "name": "grantentry",
-  "homepage": "https://data.detroitledger.org/profiles/gnl_profile/grantentry/build/",
+  "homepage":
+    "https://data.detroitledger.org/profiles/gnl_profile/grantentry/build/",
   "version": "0.1.0",
   "private": true,
   "proxy": {
@@ -48,6 +49,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "HTTPS=true yarn start",
     "build": "react-scripts build",
     "lint": "./node_modules/eslint/bin/eslint.js src",
     "test": "react-scripts test --env=jsdom --coverage",

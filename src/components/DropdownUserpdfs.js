@@ -11,6 +11,8 @@ class DropdownUserpdfs extends Component {
 
   render() {
     const options = [];
+    const { userpdfId } = this.props;
+
     for (let i = 0; i < this.props.userpdfs.length; i++) {
       options.push({ value: this.props.userpdfs[i].id, label: this.props.userpdfs[i].org.name + ', ' + this.props.userpdfs[i].year });
     }
@@ -21,9 +23,9 @@ class DropdownUserpdfs extends Component {
         options={options} 
         onChange={this._onSelect} 
         value={options.find(function(o) {
-            return o.value == parseInt(userpdfId, 10);
-          )}
-        )}
+            return o.value === parseInt(userpdfId, 10)
+          })
+        }
         placeholder="Pick a 990" />
       )
     } else {

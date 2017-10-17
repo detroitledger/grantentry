@@ -53,6 +53,11 @@ class UserpdfSelector extends Component {
       return <p>No pdfs found.</p>
     }
 
+    const checkbox = userpdfId ? <DoneUserpdf toggleDoneHandler={this.makeToggleDoneHandler(userpdfs.find(function(p) {
+            return p.id === parseInt(userpdfId, 10);
+      })
+    )} /> : <p></p>;
+
     return (
       <div>
         <DropdownUserpdfs
@@ -60,12 +65,7 @@ class UserpdfSelector extends Component {
           dispatch={this.props.dispatch}
           userpdfId={userpdfId}
         />
-        <DoneUserpdf
-          toggleDoneHandler={this.makeToggleDoneHandler(userpdfs.find(function(p) {
-            return p.id == parseInt(userpdfId, 10);
-            })
-          )}
-        />
+        {checkbox}
       </div>
     );
   }

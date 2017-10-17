@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './DoneUserpdf.css';
+
 const DoneUserpdf = ({ toggleDoneHandler }) => (
-  <input type="checkbox" checkedLink={toggleDoneHandler}/>
+  <div className="DoneUserpdf">
+    <label htmlFor="done">Done?&nbsp;</label>
+    <input id="done" type="checkbox" checkedLink={toggleDoneHandler}/>
+  </div>
 );
 
 DoneUserpdf.propTypes = {

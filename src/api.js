@@ -11,7 +11,7 @@ export const API_HOST = 'https://localhost:3000';
  */
 export const normalizeToObject = (res) => {
   return Object.assign(...res.map(d => ({ [d['id']]: d  })));
-}
+};
 
 export const fetchUserpdfs = () => {
   return fetch(`${API_HOST}/api/1.0/assigned_pdfs.json`, { credentials: 'include' })
@@ -21,7 +21,7 @@ export const fetchUserpdfs = () => {
   .then((rawUserpdfs) => {
     return Promise.resolve(normalizeToObject(rawUserpdfs));
   });
-}
+};
 
 export const updateUserpdf = (id, currentpg, done) => {
   return fetch(`${API_HOST}/services/session/token`, {
@@ -51,7 +51,7 @@ export const updateUserpdf = (id, currentpg, done) => {
   .then((rawUserpdf) => {
     return Promise.resolve(normalizeToObject([rawUserpdf]));
   });
-}
+};
 
 export const fetchCurrentUser = () => {
   return fetch(`${API_HOST}/services/session/token`, {
@@ -80,4 +80,4 @@ export const fetchCurrentUser = () => {
       name: rawSessioninfo.user.name,
     });
   });
-}
+};

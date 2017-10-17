@@ -47,7 +47,7 @@ Topbar.propTypes = {
   fetchCurrentUser: PropTypes.func.isRequired,
   isFetchingUserpdfs: PropTypes.bool.isRequired,
   orgname: PropTypes.string,
-  username: PropTypes.string
+  username: PropTypes.string,
 };
 
 const mapStateToProps = (state, { match: { params } }) => {
@@ -71,7 +71,7 @@ const mapStateToProps = (state, { match: { params } }) => {
     userpdfId,
     orgname,
     username: state.user.name,
-    userpdfs
+    userpdfs,
   };
 };
 

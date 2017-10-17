@@ -12,3 +12,11 @@
   display: inline-block;
   padding-left: 1em;
 }
+
+.Topbar .Dropdown-root {
+  float: left;
+}
+
+.Topbar .DoneUserpdf {
+  float: right;
+}

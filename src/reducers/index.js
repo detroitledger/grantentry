@@ -8,14 +8,14 @@ import user from './user';
 const listByFilter = combineReducers({
   all: createList('all'),
   active: createList('active'),
-  completed: createList('completed')
+  completed: createList('completed'),
 });
 
 const rootReducer = combineReducers({
   byId,
   listByFilter,
   user,
-  router
+  router,
 });
 
 export default rootReducer;

@@ -9,25 +9,25 @@ const emptyStore = {
     active: {
       errorMessage: null,
       ids: [],
-      isFetching: false
+      isFetching: false,
     },
     all: {
       errorMessage: null,
       ids: [],
-      isFetching: false
+      isFetching: false,
     },
     completed: {
       errorMessage: null,
       ids: [],
-      isFetching: false
-    }
+      isFetching: false,
+    },
   },
   user: {
     id: null,
     name: null,
-    isFetching: false
+    isFetching: false,
   },
-  router: { location: null }
+  router: { location: null },
 };
 
 describe('big ol reducer', () => {
@@ -41,7 +41,7 @@ describe('big ol reducer', () => {
         {},
         {
           type: 'FETCH_USERPDFS_SUCCESS',
-          response: normalizeToObject(MOCK_API_RESPONSES.assignedPdfs)
+          response: normalizeToObject(MOCK_API_RESPONSES.assignedPdfs),
         }
       )
     ).toEqual({
@@ -52,10 +52,10 @@ describe('big ol reducer', () => {
           id: 2,
           org: {
             id: 55,
-            name: 'Bollywood Music Festival - Michigan Philharmonic'
+            name: 'Bollywood Music Festival - Michigan Philharmonic',
           },
           pdfurl: 'http://google.com/aliens-are-real.pdf',
-          year: 2389
+          year: 2389,
         },
         '3': {
           currentpg: 666,
@@ -63,35 +63,35 @@ describe('big ol reducer', () => {
           id: 3,
           org: {
             id: 10360,
-            name: 'SHA-SHA’S KIDDY KORNER CHILD CARE'
+            name: 'SHA-SHA’S KIDDY KORNER CHILD CARE',
           },
           pdfurl: 'http://pdfs.com/pdf.pdf',
-          year: 1983
-        }
+          year: 1983,
+        },
       },
       listByFilter: {
         active: {
           errorMessage: null,
           ids: ['3'],
-          isFetching: false
+          isFetching: false,
         },
         all: {
           errorMessage: null,
           ids: ['2', '3'],
-          isFetching: false
+          isFetching: false,
         },
         completed: {
           errorMessage: null,
           ids: ['2'],
-          isFetching: false
-        }
+          isFetching: false,
+        },
       },
       user: {
         id: null,
         name: null,
-        isFetching: false
+        isFetching: false,
       },
-      router: { location: null }
+      router: { location: null },
     });
   });
 
@@ -99,7 +99,7 @@ describe('big ol reducer', () => {
     const userpart = reducer(
       {},
       {
-        type: 'FETCH_CURRENTUSER_REQUEST'
+        type: 'FETCH_CURRENTUSER_REQUEST',
       }
     ).user;
     expect(userpart).toEqual({ id: null, name: null, isFetching: true });
@@ -110,7 +110,7 @@ describe('big ol reducer', () => {
       {},
       {
         type: 'FETCH_CURRENTUSER_SUCCESS',
-        response: MOCK_API_RESPONSES.normalizedSystemConnect
+        response: MOCK_API_RESPONSES.normalizedSystemConnect,
       }
     ).user;
     expect(userpart).toEqual({ id: '1', name: 'admin', isFetching: false });

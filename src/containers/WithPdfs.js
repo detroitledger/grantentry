@@ -25,7 +25,7 @@ export const withPdfs = WrappedComponent => {
     haspdfs: PropTypes.bool,
     isFetching: PropTypes.bool.isRequired,
     userpdfId: PropTypes.string,
-    userpdfs: PropTypes.array
+    userpdfs: PropTypes.array,
   };
 
   const mapStateToProps = (state, { match: { params } }) => {
@@ -36,7 +36,7 @@ export const withPdfs = WrappedComponent => {
       isFetching: getIsFetching(state, 'all'),
       userpdfId,
       haspdfs: getHasPDFs(userpdfs, userpdfId),
-      userpdfs
+      userpdfs,
     };
   };
 

@@ -29,7 +29,7 @@ export const fetchUserpdfs = (filter) => (dispatch, getState) => {
 export const updateUserpdf = (id, currentpg, done) => (dispatch) => {
   dispatch({
     type: 'UPDATE_USERPDF_REQUEST',
-    request: { currentpg, done } // TODO: store this in state & drop duplicate requests
+    request: { currentpg, done }, // TODO: store this in state & drop duplicate requests
   });
 
   return api.updateUserpdf(id, currentpg, done).then(response => {
@@ -38,7 +38,7 @@ export const updateUserpdf = (id, currentpg, done) => (dispatch) => {
       response,
     });
   });
-}
+};
 
 export const fetchCurrentUser = () => (dispatch) => {
   dispatch({
@@ -51,4 +51,4 @@ export const fetchCurrentUser = () => (dispatch) => {
       response,
     });
   });
-}
+};

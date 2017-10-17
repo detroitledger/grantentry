@@ -36,9 +36,9 @@ Addgrantframe.propTypes = {
   haspdfs: PropTypes.bool,
   userpdfId: PropTypes.string,  
   userpdfs: PropTypes.array,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
 };
 
-Addgrantframe = withPdfs(Addgrantframe);
+const AddgrantframeWrapped = withPdfs(Addgrantframe);
 
-export default Addgrantframe;
+export default AddgrantframeWrapped;

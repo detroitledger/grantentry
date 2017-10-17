@@ -83,7 +83,7 @@ describe('update userpdf', () => {
             'done': false,
             'year': 2389,
             'currentpg': 6,
-          }
+          },
         },
       },
     ];

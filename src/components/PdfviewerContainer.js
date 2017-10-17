@@ -39,9 +39,10 @@ class PdfviewerContainer extends Component {
 
 PdfviewerContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  haspdfs: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
   userpdfId: PropTypes.string,
-  userpdfs: PropTypes.array
+  userpdfs: PropTypes.array,
 };
 
 const PdfviewerContainerWrapped = withPdfs(PdfviewerContainer);

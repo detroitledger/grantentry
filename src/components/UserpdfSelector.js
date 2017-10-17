@@ -30,7 +30,7 @@ class UserpdfSelector extends Component {
       value: userpdf.done,
       requestChange(newValue) {
         updateUserpdf(userpdf.id, userpdf.currentpg, newValue);
-      }
+      },
     };
   }
 

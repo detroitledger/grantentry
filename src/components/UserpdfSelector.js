@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import * as actions from '../actions';
 import { getVisibleUserpdfs, getErrorMessage, getIsFetching } from '../reducers';
 import DropdownUserpdfs from './DropdownUserpdfs';
+import DoneUserpdf from './DoneUserpdf';
 import FetchError from './FetchError';
 import { withPdfs } from '../containers/WithPdfs';
 
@@ -36,7 +37,7 @@ class UserpdfSelector extends Component {
   }
 
   render() {
-    const { isFetching, errorMessage, userpdfs } = this.props;
+    const { isFetching, errorMessage, userpdfs, userpdfId } = this.props;
     if (isFetching && !userpdfs.length) {
       return <p>Loading...</p>;
     }
@@ -48,12 +49,23 @@ class UserpdfSelector extends Component {
         />
       );
     }
+    if (!isFetching && userpdfs.length < 1) {
+      return <p>No pdfs found.</p>
+    }
 
     return (
-      <DropdownUserpdfs
-        userpdfs={userpdfs}
-        dispatch={this.props.dispatch}
-      />
+      <div>
+        <DropdownUserpdfs
+          userpdfs={userpdfs}
+          dispatch={this.props.dispatch}
+        />
+        <DoneUserpdf
+          toggleDoneHandler={this.makeToggleDoneHandler(userpdfs.find(function(p) {
+            return p.id == parseInt(userpdfId, 10);
+            })
+          )}
+        />
+      </div>
     );
   }
 }
@@ -66,6 +78,7 @@ UserpdfSelector.propTypes = {
   fetchUserpdfs: PropTypes.func.isRequired,
   updateUserpdf: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
+  userpdfId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {

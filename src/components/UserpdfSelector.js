@@ -58,6 +58,7 @@ class UserpdfSelector extends Component {
         <DropdownUserpdfs
           userpdfs={userpdfs}
           dispatch={this.props.dispatch}
+          userpdfId={userpdfId}
         />
         <DoneUserpdf
           toggleDoneHandler={this.makeToggleDoneHandler(userpdfs.find(function(p) {

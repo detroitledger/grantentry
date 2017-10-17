@@ -17,7 +17,14 @@ class DropdownUserpdfs extends Component {
  
     if (this.props.userpdfs.length > 0) {
       return (
-        <Dropdown options={options} onChange={this._onSelect} placeholder="Pick a 990" />
+        <Dropdown 
+        options={options} 
+        onChange={this._onSelect} 
+        value={options.find(function(o) {
+            return o.value == parseInt(userpdfId, 10);
+          )}
+        )}
+        placeholder="Pick a 990" />
       )
     } else {
        return (

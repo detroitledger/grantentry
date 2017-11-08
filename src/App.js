@@ -5,7 +5,6 @@ import './App.css';
 import PdfviewerContainer from './components/PdfviewerContainer';
 import Addgrantframe from './components/Addgrantframe';
 import Topbar from './components/Topbar';
-import Bottombar from './components/Bottombar';
 
 class App extends Component {
   render() {
@@ -22,9 +21,6 @@ class App extends Component {
             <Addgrantframe />
           </div>
         </main>
-        <footer className="Bottombar-container">
-          <Bottombar/>
-        </footer>
       </div>
     );
   }

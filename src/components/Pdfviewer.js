@@ -37,7 +37,7 @@ class Pdfviewer extends Component {
 
   handleLast = () => {
     this.setState({ page: this.state.pages });
-  };
+  }
 
   handleZoomIn = () => {
     this.setState({ scale: this.state.scale + .25 });

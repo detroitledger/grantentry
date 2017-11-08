@@ -23,21 +23,22 @@ class DropdownUserpdfs extends Component {
         options={options} 
         onChange={this._onSelect} 
         value={options.find(function(o) {
-            return o.value === parseInt(userpdfId, 10)
+            return o.value === parseInt(userpdfId, 10);
           })
         }
         placeholder="Pick a 990" />
-      )
+      );
     } else {
        return (
         <div>Loading...</div>
-      )
+      );
     }
   }
 }
 
 DropdownUserpdfs.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  userpdfId: PropTypes.number.isRequired,
   userpdfs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     org: PropTypes.shape({

@@ -50,7 +50,7 @@ class UserpdfSelector extends Component {
       );
     }
     if (!isFetching && userpdfs.length < 1) {
-      return <p>No pdfs found.</p>
+      return <p>No pdfs found.</p>;
     }
 
     const checkbox = userpdfId ? <DoneUserpdf toggleDoneHandler={this.makeToggleDoneHandler(userpdfs.find(function(p) {

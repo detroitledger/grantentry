@@ -16,12 +16,12 @@ class DropdownUserpdfs extends Component {
     for (let i = 0; i < this.props.userpdfs.length; i++) {
       options.push({ value: this.props.userpdfs[i].id, label: this.props.userpdfs[i].org.name + ', ' + this.props.userpdfs[i].year });
     }
- 
+
     if (this.props.userpdfs.length > 0) {
       return (
-        <Dropdown 
-        options={options} 
-        onChange={this._onSelect} 
+        <Dropdown
+        options={options}
+        onChange={this._onSelect}
         value={options.find(function(o) {
             return o.value === parseInt(userpdfId, 10);
           })
@@ -38,7 +38,7 @@ class DropdownUserpdfs extends Component {
 
 DropdownUserpdfs.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  userpdfId: PropTypes.number.isRequired,
+  userpdfId: PropTypes.string,
   userpdfs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     org: PropTypes.shape({

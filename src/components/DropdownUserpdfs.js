@@ -14,7 +14,6 @@ class DropdownUserpdfs extends Component {
     const { userpdfId } = this.props;
 
     for (let i = 0; i < this.props.userpdfs.length; i++) {
-      console.log(this.props.userpdfs[i]);
       options.push({
         value: this.props.userpdfs[i].id,
         label:

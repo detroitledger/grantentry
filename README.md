@@ -18,10 +18,10 @@ yarn install
 
 ## Local dev with proxy to prod server
 
-When developing locally, tart the create-react-app server with:
+When developing locally, start the create-react-app server with:
 
 ```
-npm dev
+npm run dev
 ```
 
 This creates a proxy that will forward requests to the dev server.

@@ -1,11 +1,15 @@
 .Topbar-title {
   flex: 2;
   font-weight: 700;
+  display: flex;
+  align-items: center;
 }
 
 .Topbar-userwidget {
   flex: 1;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .Topbar-userwidget span {

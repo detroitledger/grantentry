@@ -5,7 +5,7 @@ import './DoneUserpdf.css';
 
 const DoneUserpdf = ({ toggleDoneHandler }) => (
   <div className="DoneUserpdf">
-    <label htmlFor="done">Done?&nbsp;</label>
+    <label htmlFor="done">Mark as done?&nbsp;</label>
     <input id="done" type="checkbox" checked={toggleDoneHandler.value} onClick={() => toggleDoneHandler.requestChange(!toggleDoneHandler.value)}/>
   </div>
 );

@@ -1,3 +1,15 @@
+.bigmessage {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background-color: #0088cc;
+  font-size: 2rem;
+  padding-top: 49vh;
+  text-align: center;
+  text-decoration: none;
+}
+
 .wrapper {
   display: flex;
   overflow: hidden;

@@ -12,15 +12,6 @@ import UserpdfSelector from './UserpdfSelector';
 import './Topbar.css';
 
 class Topbar extends Component {
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    const { fetchUserpdfs, fetchCurrentUser } = this.props;
-    fetchUserpdfs('all');
-    fetchCurrentUser();
-  }
 
   render() {
     const LOGOUT_LINK = `${API_HOST}/user/logout`;
@@ -43,8 +34,6 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
-  fetchUserpdfs: PropTypes.func.isRequired,
-  fetchCurrentUser: PropTypes.func.isRequired,
   isFetchingUserpdfs: PropTypes.bool.isRequired,
   orgname: PropTypes.string,
   username: PropTypes.string,

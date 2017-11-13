@@ -25,7 +25,7 @@ const emptyStore = {
   user: {
     id: null,
     name: null,
-    isFetching: false,
+    isFetching: true,
   },
   router: { location: null },
 };
@@ -89,7 +89,7 @@ describe('big ol reducer', () => {
       user: {
         id: null,
         name: null,
-        isFetching: false,
+        isFetching: true,
       },
       router: { location: null },
     });

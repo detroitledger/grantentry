@@ -1,12 +1,12 @@
 .wrapper {
-  clear: both;
+  display: flex;
+  overflow: hidden;
 }
 
 .Pdfviewer-container,
 .Addgrantframe-container {
-  width: 49vw;
+  width: 50vw;
   height: 95vh;
-  float: left;
   position: relative;
 }
 

@@ -6,12 +6,12 @@ import './DoneUserpdf.css';
 const DoneUserpdf = ({ toggleDoneHandler }) => (
   <div className="DoneUserpdf">
     <label htmlFor="done">Done?&nbsp;</label>
-    <input id="done" type="checkbox" checkedLink={toggleDoneHandler}/>
+    <input id="done" type="checkbox" checked={toggleDoneHandler.value} onClick={() => toggleDoneHandler.requestChange(!toggleDoneHandler.value)}/>
   </div>
 );
 
 DoneUserpdf.propTypes = {
-  toggleDoneHandler: PropTypes.func.isRequired,
+  toggleDoneHandler: PropTypes.object.isRequired,
 };
 
 export default DoneUserpdf;

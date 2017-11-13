@@ -45,10 +45,17 @@ export const fetchCurrentUser = () => (dispatch) => {
     type: 'FETCH_CURRENTUSER_REQUEST',
   });
 
-  return api.fetchCurrentUser().then(response => {
-    dispatch({
-      type: 'FETCH_CURRENTUSER_SUCCESS',
-      response,
-    });
-  });
+  return api.fetchCurrentUser().then(
+    response => {
+      dispatch({
+        type: 'FETCH_CURRENTUSER_SUCCESS',
+        response,
+      });
+    },
+    () => {
+      dispatch({
+        type: 'FETCH_CURRENTUSER_FAILURE',
+      });
+    }
+  );
 };

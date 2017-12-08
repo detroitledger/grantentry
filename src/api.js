@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
-//export const API_HOST = 'https://data.detroitledger.org';
-export const API_HOST = 'https://localhost:3000';
+export const API_HOST = 'https://data.detroitledger.org';
+//export const API_HOST = 'https://localhost:3000';
 
 /**
  *  Mutate an array of responses into an object keyed by their IDs.

@@ -18,8 +18,7 @@ class Topbar extends Component {
     return (
       <div className="Topbar">
         <div className="Topbar-title">
-          Ledger Data Entry:{' '}
-          <span className="orgname">{this.props.orgname}</span>
+          Ledger Grant Data Entry
         </div>
         <UserpdfSelector />
         <div className="Topbar-userwidget">

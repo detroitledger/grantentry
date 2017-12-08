@@ -1,7 +1,7 @@
 {
   "name": "grantentry",
   "homepage":
-    "https://data.detroitledger.org/profiles/gnl_profile/grantentry/build/",
+    "https://data.detroitledger.org/grantentry/build/",
   "version": "0.1.0",
   "private": true,
   "proxy": {

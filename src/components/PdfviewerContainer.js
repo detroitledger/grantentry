@@ -25,6 +25,8 @@ class PdfviewerContainer extends Component {
     const selectedPdf = userpdfs.find(p => p.id === parseInt(userpdfId, 10));
     const { pdfurl, currentpg } = selectedPdf;
 
+    if (currentpg === 0) this.props.dispatch(updateUserpdf(this.props.userpdfId, 1, false));
+
     return (
       <div className="PdfviewerContainer">
         <Pdfviewer

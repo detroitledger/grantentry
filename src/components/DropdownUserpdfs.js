@@ -14,10 +14,21 @@ class DropdownUserpdfs extends Component {
     const { userpdfId } = this.props;
 
     for (let i = 0; i < this.props.userpdfs.length; i++) {
+      const {
+        id,
+        year,
+        currentpg,
+        'org': {
+          'name': orgName,
+        },
+      } = this.props.userpdfs[i];
+
+      const pagelabel = currentpg > 0 ? `(page ${currentpg})` : '(new!)';
+
       options.push({
-        value: this.props.userpdfs[i].id,
+        value: id,
         label:
-          this.props.userpdfs[i].org.name + ', ' + this.props.userpdfs[i].year,
+          `${orgName}, ${year} ${pagelabel}`,
       });
     }
 

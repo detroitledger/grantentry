@@ -68,16 +68,27 @@ describe('big ol reducer', () => {
           pdfurl: 'http://pdfs.com/pdf.pdf',
           year: 1983,
         },
+        '3679': {
+          id: 3679,
+          org: {
+            id: 3679,
+            name: 'Men Who Dare, Inc',
+          },
+          pdfurl: 'https://pdf.pdf/pdf.pdf.pdf',
+          done: false,
+          year: 2019,
+          currentpg: 0,
+        },
       },
       listByFilter: {
         active: {
           errorMessage: null,
-          ids: ['3'],
+          ids: ['3', '3679'],
           isFetching: false,
         },
         all: {
           errorMessage: null,
-          ids: ['2', '3'],
+          ids: ['2', '3', '3679'],
           isFetching: false,
         },
         completed: {

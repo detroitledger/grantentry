@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../actions';
 import { getVisibleUserpdfs, getIsFetching } from '../reducers';
@@ -18,7 +19,7 @@ class Topbar extends Component {
     return (
       <div className="Topbar">
         <div className="Topbar-title">
-          Ledger Grant Data Entry
+          <Link to="/">Ledger Grant Data Entry</Link>
         </div>
         <UserpdfSelector />
         <div className="Topbar-userwidget">

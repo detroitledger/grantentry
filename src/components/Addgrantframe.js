@@ -5,6 +5,7 @@ import { withPdfs } from '../containers/WithPdfs';
 import { API_HOST } from '../api';
 
 import './Addgrantframe.css';
+import Instructions from './Instructions';
 
 class Addgrantframe extends Component {
   render() {
@@ -15,7 +16,11 @@ class Addgrantframe extends Component {
     }
 
     if (!haspdfs) {
-      return <p>Please select a PDF from your todo list below.</p>;
+      return (
+        <div>
+          <Instructions />
+        </div>
+      );
     }
 
     const selectedPdf = userpdfs.find(p => p.id === parseInt(userpdfId, 10));

@@ -52,3 +52,9 @@
 .Bottombar a:visited {
   color: #fff;
 }
+
+.react-user-tour-close {
+  padding: 0 !important;
+  margin-right: -.5em;
+  margin-top: -.8em;
+}

@@ -4,6 +4,7 @@ import { routerReducer as router } from 'react-router-redux';
 import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
 import user from './user';
+import tour from './tour';
 
 const listByFilter = combineReducers({
   all: createList('all'),
@@ -11,11 +12,22 @@ const listByFilter = combineReducers({
   completed: createList('completed'),
 });
 
+const preTourState = (state = {}, action = { type: null }) => {
+  switch (action.type) {
+    case 'SAVE_PRE_TOUR_STATE':
+      return action.state;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   byId,
   listByFilter,
   user,
+  tour,
   router,
+  preTourState,
 });
 
 export default rootReducer;

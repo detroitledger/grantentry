@@ -9,6 +9,8 @@ const byId = (state = {}, action = { type: null }) => {
         };
       }
       break;
+    case 'RESTORE_PRE_TOUR_STATE':
+      return action.oldState.byId;
     default:
       return state;
   }

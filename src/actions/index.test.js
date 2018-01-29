@@ -146,6 +146,9 @@ describe('update userpdf', () => {
           "isFetching": false,
         },
       },
+      "tour": {
+        "active": false,
+      },
     });
 
     return store.dispatch(actions.updateUserpdf(2, 6, false)).then(() => {

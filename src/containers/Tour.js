@@ -29,7 +29,7 @@ const steps = [
     verticalOffset: 100,
     horizontalOffset: 100,
     title: <strong>The grant entry form displays on the right hand side</strong>,
-    body: <p>{"The title and timeframe of the 990 you selected should already be autofilled in the year and funder fields. Unless otherwise specified, we assume grants span the organization's fiscal year. You can still adjust the autofilled fields if necessary and they'll carry through from grant to grant."}</p>,
+    body: <p>{"The title and timeframe of the 990 you selected should already be autofilled in the year and funder fields. Unless otherwise specified, we assume grants span the organization's fiscal year. You can still adjust the autocompleted fields if necessary and they'll carry through from grant to grant."}</p>,
   },
   {
     step: 4,
@@ -44,7 +44,7 @@ const steps = [
     iframeSelector: 'iframe',
     position: 'left',
     title: <strong>Add your first grant!</strong>,
-    body: <p>{`Find the first grant recipient listed. Decide if the recipient meets the Ledger's criteria - is the recipient organization's address in Detroit? Does the grant purpose explicitly mention Detroit? If either of these are true, then this grant should be added.<br />Add the recipient (this will autofill as you type), source (eg "IRS 990 2016"), amount, and description if available. Click save.`}</p>,
+    body: <p>{`Find the first grant recipient listed. Decide if the recipient meets the Ledger's criteria - is the recipient organization's address in Detroit? Does the grant purpose explicitly mention Detroit? If either of these are true, then this grant should be added. Add the recipient (this will autofill as you type), amount, and description if available. Click save.`}</p>,
   },
   {
     step: 6,

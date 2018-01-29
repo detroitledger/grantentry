@@ -16,13 +16,13 @@ const Instructions = ({ tourStart }) => (
       <li>by <b>grant description</b>: the organization is involved in a project that will impact Detroit (though the organization may be based elsewhere)</li>
     </ul>
     <br />
-    <p>Two types of records are created in order to capture giving interactions, <b>grant records</b> and <b>organization records</b>.</p>
+    <p>The Detroit Ledger is made up mainly of two types of data records: <b>grants</b> and <b>organizations</b>. You're going to help us add grant records based on what you find in a funding organization's IRS Form 990. Each year, tax exempt nonprofits have to file a Form 990 with the government. This form includes all sorts of information about the organization, but the part we're most interested in is called "Schedule I". This section contains a list of the organization's big donations it makes to other organizations.</p>
     <br />
     <h2>Getting started</h2>
     <ol>
       <li>Pick a 990; your 990 will show up on the left and the form will be on the right. The funder and fiscal year auto-populate</li>
-      <li>Scroll thru your 990 and find "Schedule I: Grants and Other Assistance..."</li>
-      <li>Enter grants using the "Detroit impact" criteria above. Each grant needs a: 
+      <li>Scroll through your 990 and find "Schedule I: Grants and Other Assistance..."</li>
+      <li>Enter grants using the "Detroit impact" criteria above. Each grant needs a:
         <ul>
           <li>Start and end date</li>
           <li>Funder</li>

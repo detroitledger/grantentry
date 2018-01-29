@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux';
+
 import * as api from '../api';
 import { getIsFetching } from '../reducers';
 
@@ -58,4 +60,66 @@ export const fetchCurrentUser = () => (dispatch) => {
       });
     }
   );
+};
+
+export const tourSetStep = step => (dispatch) => {
+  if (step === 2) {
+    // Go to our sample entry
+    dispatch(push('/' + 6));
+  }
+
+  return Promise.resolve(dispatch({
+    type: 'TOUR_SET_STEP',
+    step,
+  }));
+};
+
+export const tourStop = () => (dispatch, getState) => {
+  dispatch({
+    type: 'RESTORE_PRE_TOUR_STATE',
+    oldState: getState().preTourState,
+  });
+
+  // Go back home
+  dispatch(push('/'));
+
+  return Promise.resolve(dispatch({ type: 'TOUR_STOP' }));
+};
+
+export const tourStart = () => (dispatch, getState) => {
+  dispatch({
+    type: 'SAVE_PRE_TOUR_STATE',
+    state: getState(),
+  });
+
+  // Set up some fake state, for show.
+  dispatch({
+    type: 'FETCH_USERPDFS_SUCCESS',
+    response: {
+      '6': {
+        id: 6,
+        org: {
+          id: 35,
+          name: 'Auntie Na\'s House',
+        },
+        pdfurl: 'https://data.detroitledger.org/sites/default/files/grantentrypdfs/Geijsel_CortesBarragan_2016_A_Dishonest_Election.pdf',
+        done: false,
+        year: 2013,
+        currentpg: 4,
+      },
+      '7': {
+        id: 7,
+        org: {
+          id: 3679,
+          name: 'Men Who Dare, Inc',
+        },
+        pdfurl: 'https://data.detroitledger.org/sites/default/files/grantentrypdfs/webfont-handbook.pdf',
+        done: false,
+        year: 2016,
+        currentpg: 0,
+      },
+    },
+  });
+
+  return Promise.resolve(dispatch({ type: 'TOUR_START' }));
 };

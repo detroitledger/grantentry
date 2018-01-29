@@ -7,6 +7,7 @@ import * as actions from './actions';
 import PdfviewerContainer from './components/PdfviewerContainer';
 import Addgrantframe from './components/Addgrantframe';
 import Topbar from './components/Topbar';
+import Tour from './containers/Tour';
 
 export class UnwrappedApp extends Component {
   componentDidMount() {
@@ -40,6 +41,7 @@ export class UnwrappedApp extends Component {
 
     return (
       <div className="App">
+        <Tour />
         <header className="Topbar-container">
           <Topbar/>
         </header>

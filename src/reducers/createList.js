@@ -25,6 +25,8 @@ const createList = (filter) => {
           );
       case 'UPDATE_USERPDF_SUCCESS':
         return handleUpdate(state, action);
+      case 'RESTORE_PRE_TOUR_STATE':
+        return action.oldState.listByFilter[filter].ids;
       default:
         return state;
     }

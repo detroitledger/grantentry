@@ -28,6 +28,8 @@ const emptyStore = {
     isFetching: true,
   },
   router: { location: null },
+  tour: { active: false, step: 1 },
+  preTourState: {},
 };
 
 describe('big ol reducer', () => {
@@ -103,6 +105,8 @@ describe('big ol reducer', () => {
         isFetching: true,
       },
       router: { location: null },
+      tour: { active: false, step: 1 },
+      preTourState: {},
     });
   });
 

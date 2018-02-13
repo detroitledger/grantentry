@@ -7,6 +7,7 @@ import { API_HOST } from '../api';
 
 import './Addgrantframe.css';
 import Instructions from './Instructions';
+import Addgrantform from './Addgrantform';
 import * as actions from '../actions';
 
 class Addgrantframe extends Component {
@@ -36,7 +37,8 @@ class Addgrantframe extends Component {
 
     return (
       <div className="Addgrantframe">
-        <iframe title="add grant" src={iframeSrc} />
+        {/* <iframe title="add grant" src={iframeSrc} /> */}
+        <Addgrantform pdf={selectedPdf} source={source} />
       </div>
     );
   }

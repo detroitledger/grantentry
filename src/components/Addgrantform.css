@@ -1,0 +1,14 @@
+form {
+  display: 'flex';
+  flex-direction: 'column';
+  padding: 3em;
+  margin: 4em;
+}
+
+input, textarea {
+  width: 75%;
+}
+
+label {
+  padding: 2em;
+}

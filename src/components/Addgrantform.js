@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './Addgrantform.css';
+
 class Addgrantform extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,8 @@ class Addgrantform extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
+    // add some form validation here. eg amount should be float
+
     this.setState({
       [name]: value
     });
@@ -31,6 +35,7 @@ class Addgrantform extends Component {
 
   handleSubmit(event) {
     console.log(this.state);
+    // eventually this will dispatch redux action createGrant()
     event.preventDefault();
   }
 

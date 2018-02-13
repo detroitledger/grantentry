@@ -42,7 +42,7 @@ class Addgrantframe extends Component {
       </div>
     );
   }
-}
+};
 
 Addgrantframe.propTypes = {
   haspdfs: PropTypes.bool,

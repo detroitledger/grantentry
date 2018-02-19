@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+import { withPdfs } from '../containers/WithPdfs';
 
 import './Addgrantform.css';
 
@@ -15,18 +19,31 @@ class Addgrantform extends Component {
       endDate: this.props.pdf.year,
       funder: this.props.pdf.org.name,
       source: this.props.source,
-    }
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  createGrant(grant) {
+    this.props.createGrant({
+      start: `01/${this.state.startDate}`,
+      end: `12/${this.state.endDate}`,
+      funder: { id: this.props.pdf.org.id },
+      recipient: { id: 123 },
+      source: 'hi',
+      amount: '666',
+      description: 'hi',
+      types: 'hi',
+      tags: 'hi',
+      internalNotes: 'hi',
+    });
   }
 
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-
-    // add some form validation here. eg amount should be float
 
     this.setState({
       [name]: value
@@ -35,7 +52,7 @@ class Addgrantform extends Component {
 
   handleSubmit(event) {
     console.log(this.state);
-    // eventually this will dispatch redux action createGrant()
+    this.createGrant(this.state);
     event.preventDefault();
   }
 
@@ -81,4 +98,6 @@ Addgrantform.propTypes = {
   source: PropTypes.string.isRequired,
 };
 
-export default Addgrantform;
+const AddgrantformWrapped = withPdfs(connect(null, actions)(Addgrantform));
+
+export default AddgrantformWrapped;

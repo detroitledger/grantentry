@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
+import LedgerApi from './LedgerApi';
+
 export const API_HOST = 'https://data.detroitledger.org';
 //export const API_HOST = 'https://localhost:3000';
 
@@ -54,13 +56,9 @@ export const updateUserpdf = (id, currentpg, done) => {
 };
 
 export const fetchCurrentUser = () => {
-  return fetch(`${API_HOST}/services/session/token`, {
-    method: 'GET',
-    credentials: 'include',
-  })
-  .then(function(response) {
-    return response.text();
-  })
+  const client = new LedgerApi({ apiUrl: `${API_HOST}/api/1.0`, baseUrl: API_HOST });
+
+  return client.getToken()
   .then(function(token) {
     return fetch(`${API_HOST}/api/1.0/system/connect.json`, {
       method: 'POST',
@@ -80,4 +78,15 @@ export const fetchCurrentUser = () => {
       name: rawSessioninfo.user.name,
     });
   });
+};
+
+export const createGrant = (grantToBe) => {
+  const client = new LedgerApi({ apiUrl: `${API_HOST}/api/1.0`, baseUrl: API_HOST });
+
+  return client.getToken()
+    .then((token) => {
+      const drupalized = LedgerApi.grantDetemplate(grantToBe);
+      return client.createGrant(drupalized, token);
+    })
+    .then(response => client.grantById(response.nid));
 };

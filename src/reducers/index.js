@@ -5,6 +5,7 @@ import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
 import user from './user';
 import tour from './tour';
+import grants from './grants';
 
 const listByFilter = combineReducers({
   all: createList('all'),
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   tour,
   router,
   preTourState,
+  grants,
 });
 
 export default rootReducer;

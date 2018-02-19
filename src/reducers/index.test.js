@@ -30,6 +30,7 @@ const emptyStore = {
   router: { location: null },
   tour: { active: false, step: 1 },
   preTourState: {},
+  grants: { isCreating: false, byId: {} },
 };
 
 describe('big ol reducer', () => {
@@ -47,6 +48,7 @@ describe('big ol reducer', () => {
         }
       )
     ).toEqual({
+      ...emptyStore,
       byId: {
         '2': {
           currentpg: 5,
@@ -99,14 +101,6 @@ describe('big ol reducer', () => {
           isFetching: false,
         },
       },
-      user: {
-        id: null,
-        name: null,
-        isFetching: true,
-      },
-      router: { location: null },
-      tour: { active: false, step: 1 },
-      preTourState: {},
     });
   });
 

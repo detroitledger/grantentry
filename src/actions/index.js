@@ -45,6 +45,28 @@ export const updateUserpdf = (id, currentpg, done) => (dispatch, getState) => {
   }
 };
 
+export const createGrant = (grantData) => (dispatch) => {
+  dispatch({
+    type: 'CREATE_GRANT_REQUEST',
+  });
+
+  return api.createGrant(grantData)
+    .then(
+      response => {
+        dispatch({
+          type: 'CREATE_GRANT_SUCCESS',
+          response,
+        });
+      },
+      error => {
+        dispatch({
+          type: 'CREATE_GRANT_FAILURE',
+          error,
+        });
+      }
+    );
+};
+
 export const fetchCurrentUser = () => (dispatch) => {
   dispatch({
     type: 'FETCH_CURRENTUSER_REQUEST',

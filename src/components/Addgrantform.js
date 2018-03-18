@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { Field, reduxForm } from 'redux-form';
 
+import * as actions from '../actions';
 import { withPdfs } from '../containers/WithPdfs';
 
 import './Addgrantform.css';
@@ -59,35 +60,35 @@ class Addgrantform extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Start date:
-          <input name="startDate" type="text" value={this.state.startDate} onChange={this.handleInputChange} />
-        </label>
-        <label>
-          End date:
-          <input name="endDate" type="text" value={this.state.endDate} onChange={this.handleInputChange} />
-        </label>
-        <label>
-          Funder:
-          <input name="funder" type="text" value={this.state.funder} onChange={this.handleInputChange} />
-        </label>
-        <label>
-          Recipient:
-          <input name="recipient" type="text" value={this.state.recipient} onChange={this.handleInputChange} />
-        </label>
-        <label>
-          Amount:
-          <input name="amount" type="text" value={this.state.amount} onChange={this.handleInputChange} />
-        </label>
-        <label>
-          description:
-          <textarea name="description" type="text" value={this.state.description} onChange={this.handleInputChange} />
-        </label>
-        <label>
-          Source:
-          <input name="source" type="text" value={this.state.source} onChange={this.handleInputChange} />
-        </label>
-        <input type="submit" value="Save & Add Another" />
+        <div>
+          <label htmlFor="startDate">Start Date</label>
+          <Field name="startDate" component="input" type="text" onChange={this.handleInputChange} />
+        </div>
+        <div>
+          <label htmlFor="endDate">End Date</label>
+          <Field name="endDate" component="input" type="text" onChange={this.handleInputChange} />
+        </div>
+        <div>
+          <label htmlFor="funder">Funder</label>
+          <Field name="funder" component="input" type="text" onChange={this.handleInputChange} />
+        </div>
+        <div>
+          <label htmlFor="recipient">Recipient</label>
+          <Field name="recipient" component="input" type="text" onChange={this.handleInputChange} />
+        </div>
+        <div>
+          <label htmlFor="amount">Amount</label>
+          <Field name="amount" component="input" type="text" onChange={this.handleInputChange} />
+        </div>
+        <div>
+          <label htmlFor="description">Description/Purpose</label>
+          <Field name="description" component="textarea" type="text" onChange={this.handleInputChange} />
+        </div>
+        <div>
+          <label htmlFor="source">Source</label>
+          <Field name="source" component="input" type="text" onChange={this.handleInputChange} />
+        </div>
+        <button type="submit">Submit</button>
       </form>
     );
   }
@@ -97,6 +98,10 @@ Addgrantform.propTypes = {
   pdf: PropTypes.object.isRequired,
   source: PropTypes.string.isRequired,
 };
+
+Addgrantform = reduxForm({
+  form: 'add-grant',
+})(Addgrantform);
 
 const AddgrantformWrapped = withPdfs(connect(null, actions)(Addgrantform));
 

@@ -6,6 +6,7 @@ import './App.css';
 import * as actions from './actions';
 import PdfviewerContainer from './components/PdfviewerContainer';
 import Addgrantframe from './components/Addgrantframe';
+import RecentGrants from './components/RecentGrants';
 import Topbar from './components/Topbar';
 import Tour from './containers/Tour';
 
@@ -27,12 +28,12 @@ export class UnwrappedApp extends Component {
     fetchUserpdfs('all');
   }
 
-  loading = () => (
-    <div className="bigmessage">Loading...</div>
-  );
+  loading = () => <div className="bigmessage">Loading...</div>;
 
   loginPrompt = () => (
-    <a className="bigmessage" href="/user">Log in to start entering grants</a>
+    <a className="bigmessage" href="/user">
+      Log in to start entering grants
+    </a>
   );
 
   render() {
@@ -43,7 +44,7 @@ export class UnwrappedApp extends Component {
       <div className="App">
         <Tour />
         <header className="Topbar-container">
-          <Topbar/>
+          <Topbar />
         </header>
         <main className="wrapper">
           <div className="Pdfviewer-container" role="complementary">
@@ -51,6 +52,9 @@ export class UnwrappedApp extends Component {
           </div>
           <div className="Addgrantframe-container" role="main">
             <Addgrantframe />
+          </div>
+          <div className="RecentGrants-container" role="complementary">
+            <RecentGrants />
           </div>
         </main>
       </div>

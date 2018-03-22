@@ -9,8 +9,8 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: [ 'react' ],
-  extends: [ 'eslint:recommended', 'plugin:react/recommended' ],
+  plugins: ['react'],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   env: {
     browser: true,
     es6: true,
@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'no-console': 0,
     'comma-dangle': ['error', 'always-multiline'],
-    'semi': ['error', 'always'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
   },
-}
+};

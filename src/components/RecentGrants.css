@@ -1,0 +1,17 @@
+.RecentGrants h1,
+.RecentGrants .grant {
+  padding: 10px 20px;
+}
+
+.RecentGrants h1 {
+  font-size: 16px;
+}
+
+.RecentGrants h2 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.RecentGrants .metadata {
+  color: #666;
+}

@@ -17,16 +17,19 @@ class Addgrantform extends Component {
 
     this.state = {
       recipient: '',
-      amount: null,
+      amount: undefined,
       description: '',
       startDate: `01/${this.props.pdf.year}`,
       endDate: `12/${this.props.pdf.year}`,
       funder: this.props.pdf.org.name,
       source: this.props.source,
       internalNotes: '',
+      error: false,
+      helperText: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleAmountChange = this.handleAmountChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -37,7 +40,7 @@ class Addgrantform extends Component {
       funder: { id: this.props.pdf.org.id },
       recipient: { id: 123 },
       source: 'hi',
-      amount: '666',
+      amount: 666,
       description: 'hi',
       types: 'hi',
       tags: 'hi',
@@ -49,7 +52,19 @@ class Addgrantform extends Component {
     this.setState({
       [name]: event.target.value,
     });
-  };
+  }
+
+  handleAmountChange = name => event => {
+    if (event.target.value && isNaN(Number(event.target.value))) {
+      this.setState({ error: true, helperText: 'Must be a number', });
+    } else {
+      this.setState({ 
+        [name]: event.target.value,
+        error: false,
+        helperText: '',
+      });
+    }
+  }
 
   handleSubmit(event) {
     console.log(this.state);
@@ -96,7 +111,9 @@ class Addgrantform extends Component {
             id="amount"
             label="Amount"
             value={this.state.amount}
-            onChange={this.handleInputChange('amount')}
+            onChange={this.handleAmountChange('amount')}
+            error={this.state.error}
+            helperText={this.state.helperText}
             InputProps={{
               startAdornment: <InputAdornment position="start">$</InputAdornment>,
             }}
@@ -112,7 +129,7 @@ class Addgrantform extends Component {
           <TextField
             id="internalNotes"
             label="Internal notes"
-            value={this.state.description}
+            value={this.state.internalNotes}
             onChange={this.handleInputChange('internalNotes')}
             multiline
             margin="normal" />

@@ -22,9 +22,10 @@ export class UnwrappedApp extends Component {
   };
 
   fetchData() {
-    const { fetchUserpdfs, fetchCurrentUser } = this.props;
+    const { fetchUserpdfs, fetchCurrentUser, fetchOrgs } = this.props;
     fetchCurrentUser();
     fetchUserpdfs('all');
+    fetchOrgs();
   }
 
   loading = () => (

@@ -90,3 +90,24 @@ export const createGrant = (grantToBe) => {
     })
     .then(response => client.grantById(response.nid));
 };
+
+export const fetchOrgs = async () => {
+  const client = new LedgerApi({ apiUrl: `${API_HOST}/api/1.0`, baseUrl: API_HOST });
+
+  let orgs = [];
+  const limit = 1000;
+  let offset = 0;
+  let count = 0;
+
+  do {
+    const page = await client.organizations(limit, offset);
+    orgs = [
+      ...orgs,
+      ...page,
+    ];
+    offset += limit;
+    count = Object.keys(page).length;
+  } while (count === limit)
+
+  return normalizeToObject(orgs);
+}

@@ -17,10 +17,11 @@ const validate = values => {
   if (values.amount && isNaN(Number(values.amount))) {
     errors.amount = 'Amount must be a number';
   }
-
-  if ((values.startDate && RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.startDate)) || (values.endDate && RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.endDate))) {
-    errors.startDate = 'Start date must be formatted as MM/YYYY';
-    errors.endDate = 'End date must be formatted as MM/YYYY';
+  if (values.startDate && !RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.startDate)) {
+    errors.startDate = 'Start date should be MM/YYYY';
+  } 
+  if (values.endDate && !RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.endDate)) {
+    errors.endDate = 'End date should be MM/YYYY';
   }
 
   return errors;
@@ -29,6 +30,7 @@ const validate = values => {
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField
     label={label}
+    helperText={error}
     error={touched && error}
     margin="normal"
     {...input}
@@ -54,7 +56,6 @@ class Addgrantform extends Component {
       },
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -71,10 +72,6 @@ class Addgrantform extends Component {
       tags: 'hi',
       internalNotes: 'hi',
     });
-  }
-
-  handleInputChange = name => event => {
-    this.setState({ [name]: event.target.value, });
   }
 
   handleSubmit(event) {

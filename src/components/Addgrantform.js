@@ -143,7 +143,7 @@ Addgrantform = reduxForm({
 
 const AddgrantformWrapped = connect(
   // map state to props
-  (state, ownProps) => { debugger; return ({ initialValues: { funder: 'some org', amount: 123 } })}, 
+  (state, ownProps) => { return ({ initialValues: { funder: 'some org', amount: 123 } })},
   // map dispatch to props
   actions
 )(withPdfs(Addgrantform));

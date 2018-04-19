@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import { InputAdornment } from 'material-ui/Input';
 import Button from 'material-ui/Button';
@@ -11,25 +11,29 @@ import { withPdfs } from '../containers/WithPdfs';
 
 import './Addgrantform.css';
 
-/** Group of functions that take TextField input and return a bool */
-const validators = {
-  isNotNumber: function(val) {
-    return isNaN(Number(val))
-  },
+const validate = values => {
+  const errors = {};
 
-  isFormattedAsDate: function(val) {
-    let mmyyyy = RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$')
-    return mmyyyy.test(val);
-  },
-
-  isAfterDate: function(val) {
-    // check end date is after start date
-  },
-
-  isValidLength: function(val) {
-    // check that source string is reasonable length
+  if (values.amount && isNaN(Number(values.amount))) {
+    errors.amount = 'Amount must be a number';
   }
-};
+
+  if ((values.startDate && RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.startDate)) || (values.endDate && RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.endDate))) {
+    errors.startDate = 'Start date must be formatted as MM/YYYY';
+    errors.endDate = 'End date must be formatted as MM/YYYY';
+  }
+
+  return errors;
+}
+
+const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+  <TextField
+    label={label}
+    error={touched && error}
+    margin="normal"
+    {...input}
+    {...custom} />
+);
 
 class Addgrantform extends Component {
   constructor(props) {
@@ -71,21 +75,6 @@ class Addgrantform extends Component {
 
   handleInputChange = name => event => {
     this.setState({ [name]: event.target.value, });
-
-    // Field level validation to trigger error messages
-    if (name === 'amount') {
-      validators.isNotNumber(event.target.value) ? 
-        this.setState({ errors: { [name]: true }, helpers: { [name]: 'Must be a positive number' }, }) 
-        : this.setState({ errors: { [name]: false }, helpers: { [name]: '' }, });
-    } else if (name === 'startDate' || name === 'endDate') {
-      validators.isFormattedAsDate(event.target.value) ?
-        this.setState({ errors: { [name]: false }, helpers: { [name]: '' }, })
-        : this.setState({ errors: { [name]: true }, helpers: { [name]: 'Format like MM/YYYY' }, });
-    } else if (name === 'endDate') {
-      // should come after startDate
-    } else if (name === 'source') {
-      // is valid length 
-    }
   }
 
   handleSubmit(event) {
@@ -98,78 +87,52 @@ class Addgrantform extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div style={{ display: 'flex', flexWrap: 'wrap', }}>
-          <TextField
-            id="startDate"
-            label="Start date"
-            value={this.state.startDate}
-            onChange={this.handleInputChange('startDate')}
-            margin="normal"
-            helperText={this.state.helpers.startDate}
-            error={this.state.errors.startDate}
+          <Field
+            name="startDate"
+            component={renderTextField}
+            label="Start Date"
             required />
-          <TextField
-            id="endDate"
-            label="End date"
-            value={this.state.endDate}
-            onChange={this.handleInputChange('endDate')}
-            margin="normal"
-            helperText={this.state.helpers.endDate}
-            error={this.state.errors.endDate}
+          <Field
+            name="endDate"
+            component={renderTextField}
+            label="End Date"
             required />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <TextField
-            id="funder"
+          <Field
+            name="funder"
+            component={renderTextField}
             label="From"
-            value={this.state.funder}
-            onChange={this.handleInputChange('funder')}
-            margin="normal"
-            helperText={this.state.helpers.funder}
-            error={this.state.errors.funder}
             required />
-          <TextField
-            id="recipient"
+          <Field
+            name="recipient"
+            component={renderTextField}
             label="To"
-            value={this.state.recipient}
-            onChange={this.handleInputChange('recipient')}
-            helperText={this.state.helpers.recipient}
-            error={this.state.errors.recipient}
-            margin="normal"
             required />
-          <TextField
-            id="amount"
+          <Field
+            name="amount"
+            component={renderTextField}
             label="Amount"
-            value={this.state.amount}
-            onChange={this.handleInputChange('amount')}
-            margin="normal"
+            required
             InputProps={{
               startAdornment: <InputAdornment position="start">$</InputAdornment>,
-            }}
-            helperText={this.state.helpers.amount}
-            error={this.state.errors.amount}
-            required />
-          <TextField
-            id="description"
+            }} />
+          <Field
+            name="description"
+            component={renderTextField}
             label="Purpose or description"
-            value={this.state.description}
-            onChange={this.handleInputChange('description')}
             multiline
-            margin="normal" />
-          <TextField
-            id="internalNotes"
+            rowsMax="4" />
+          <Field
+            name="internalNotes"
+            component={renderTextField}
             label="Internal notes"
-            value={this.state.internalNotes}
-            onChange={this.handleInputChange('internalNotes')}
             multiline
-            margin="normal" />
-          <TextField
-            id="source"
+            rowsMax="2" />
+          <Field
+            name="source"
+            component={renderTextField}
             label="Source"
-            value={this.state.source}
-            onChange={this.handleInputChange('source')}
-            margin="normal"
-            helperText={this.state.helpers.source}
-            error={this.state.errors.source}
             required />
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', margin: '1em', }}>
@@ -189,6 +152,7 @@ Addgrantform.propTypes = {
 
 Addgrantform = reduxForm({
   form: 'add-grant',
+  validate
 })(Addgrantform);
 
 const AddgrantformWrapped = withPdfs(connect(null, actions)(Addgrantform));

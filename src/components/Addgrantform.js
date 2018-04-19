@@ -17,11 +17,17 @@ const validate = values => {
   if (values.amount && isNaN(Number(values.amount))) {
     errors.amount = 'Amount must be a number';
   }
-  if (values.startDate && !RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.startDate)) {
-    errors.startDate = 'Start date should be MM/YYYY';
+
+  if (values.start && !RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.start)) {
+    errors.start = 'Start date should be MM/YYYY';
   } 
-  if (values.endDate && !RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.endDate)) {
-    errors.endDate = 'End date should be MM/YYYY';
+
+  if (values.end && !RegExp('(0[1-9]|10|11|12)/20[0-9]{2}$').test(values.end)) {
+    errors.end = 'End date should be MM/YYYY';
+  }
+
+  if (values.source && values.source.length < 8) {
+    errors.source = 'Source should be longer, eg "IRS 990 2017"'
   }
 
   return errors;
@@ -41,35 +47,18 @@ class Addgrantform extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      startDate: `01/${this.props.pdf.year}`,
-      endDate: `12/${this.props.pdf.year}`,
-      funder: this.props.pdf.org.name,
-      recipient: '',
-      amount: 0,
-      description: '',
-      internalNotes: '',
-      source: this.props.source,
-      errors: {},
-      helpers: {
-        recipient: "Can't find the recipient org? Add them here",
-      },
-    };
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   createGrant(grant) {
     this.props.createGrant({
-      start: this.state.startDate,
-      end: this.state.endDate,
+      start: `01/${this.props.pdf.year}`,
+      end: `12/${this.props.pdf.year}`,
       funder: { id: this.props.pdf.org.id },
       recipient: { id: 123 },
-      source: 'hi',
+      source: this.props.source,
       amount: 666,
       description: 'hi',
-      types: 'hi',
-      tags: 'hi',
       internalNotes: 'hi',
     });
   }
@@ -85,12 +74,12 @@ class Addgrantform extends Component {
       <form onSubmit={this.handleSubmit}>
         <div style={{ display: 'flex', flexWrap: 'wrap', }}>
           <Field
-            name="startDate"
+            name="start"
             component={renderTextField}
             label="Start Date"
             required />
           <Field
-            name="endDate"
+            name="end"
             component={renderTextField}
             label="End Date"
             required />
@@ -152,6 +141,11 @@ Addgrantform = reduxForm({
   validate
 })(Addgrantform);
 
-const AddgrantformWrapped = withPdfs(connect(null, actions)(Addgrantform));
+const AddgrantformWrapped = connect(
+  // map state to props
+  (state, ownProps) => { debugger; return ({ initialValues: { funder: 'some org', amount: 123 } })}, 
+  // map dispatch to props
+  actions
+)(withPdfs(Addgrantform));
 
 export default AddgrantformWrapped;

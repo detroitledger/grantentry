@@ -86,7 +86,7 @@ export const fetchOrgs = () => (dispatch) => {
           error,
         });
       }
-    )
+    );
 };
 
 export const fetchCurrentUser = () => (dispatch) => {

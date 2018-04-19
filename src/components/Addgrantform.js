@@ -27,11 +27,11 @@ const validate = values => {
   }
 
   if (values.source && values.source.length < 8) {
-    errors.source = 'Source should be longer, eg "IRS 990 2017"'
+    errors.source = 'Source should be longer, eg "IRS 990 2017"';
   }
 
   return errors;
-}
+};
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField
@@ -43,14 +43,26 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
     {...custom} />
 );
 
+renderTextField.propTypes = {
+  input: PropTypes.object.isRequired,
+  label: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
+};
+
 class Addgrantform extends Component {
+  static propTypes = {
+    pdf: PropTypes.object.isRequired,
+    source: PropTypes.string.isRequired,
+    createGrant: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  createGrant(grant) {
+  createGrant(/*grant*/) {
     this.props.createGrant({
       start: `01/${this.props.pdf.year}`,
       end: `12/${this.props.pdf.year}`,
@@ -63,7 +75,7 @@ class Addgrantform extends Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     console.log(this.state);
     // this.createGrant(this.state);
     // event.preventDefault();
@@ -72,7 +84,7 @@ class Addgrantform extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           <Field
             name="start"
             component={renderTextField}
@@ -121,7 +133,7 @@ class Addgrantform extends Component {
             label="Source"
             required />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '1em', }}>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '1em' }}>
           <Button type="submit" variant="raised" color="primary" size="large">
             Submit
           </Button>
@@ -129,23 +141,25 @@ class Addgrantform extends Component {
       </form>
     );
   }
-};
+}
 
-Addgrantform.propTypes = {
-  pdf: PropTypes.object.isRequired,
-  source: PropTypes.string.isRequired,
-};
-
-Addgrantform = reduxForm({
+const AddgrantformFormed = reduxForm({
   form: 'add-grant',
-  validate
+  validate,
 })(Addgrantform);
 
 const AddgrantformWrapped = connect(
   // map state to props
-  (state, ownProps) => { return ({ initialValues: { funder: 'some org', amount: 123 } })},
+  (state, ownProps) => {
+    return ({
+      initialValues: {
+        funder: `${ownProps.pdf.org.name} (${ownProps.pdf.org.id})`,
+        amount: 123,
+      },
+    });
+  },
   // map dispatch to props
   actions
-)(withPdfs(Addgrantform));
+)(withPdfs(AddgrantformFormed));
 
 export default AddgrantformWrapped;

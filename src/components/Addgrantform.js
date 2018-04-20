@@ -45,7 +45,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 
 renderTextField.propTypes = {
   input: PropTypes.object.isRequired,
-  label: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
   meta: PropTypes.object.isRequired,
 };
 
@@ -54,6 +54,9 @@ class Addgrantform extends Component {
     pdf: PropTypes.object.isRequired,
     source: PropTypes.string.isRequired,
     createGrant: PropTypes.func.isRequired,
+    invalid: PropTypes.bool.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -82,9 +85,11 @@ class Addgrantform extends Component {
   }
 
   render() {
+    const { invalid, pristine, submitting, } = this.props;
+
     return (
       <form onSubmit={this.handleSubmit}>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', }}>
           <Field
             name="start"
             component={renderTextField}
@@ -96,7 +101,7 @@ class Addgrantform extends Component {
             label="End Date"
             required />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', }}>
           <Field
             name="funder"
             component={renderTextField}
@@ -133,8 +138,8 @@ class Addgrantform extends Component {
             label="Source"
             required />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '1em' }}>
-          <Button type="submit" variant="raised" color="primary" size="large">
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '1em', }}>
+          <Button type="submit" disabled={invalid || pristine || submitting} variant="raised" color="primary" size="large">
             Submit
           </Button>
         </div>
@@ -154,7 +159,9 @@ const AddgrantformWrapped = connect(
     return ({
       initialValues: {
         funder: `${ownProps.pdf.org.name} (${ownProps.pdf.org.id})`,
-        amount: 123,
+        start: `01/${ownProps.pdf.year}`,
+        end: `12/${ownProps.pdf.year}`,
+        source: `IRS 990 ${ownProps.pdf.year}`,
       },
     });
   },

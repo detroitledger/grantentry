@@ -26,6 +26,14 @@ const validate = values => {
     errors.end = 'End date should be MM/YYYY';
   }
 
+  if ((parseInt(values.end.substr(-4), 10) < parseInt(values.start.substr(-4), 10))) {
+    errors.end = 'End date must be after start date';
+  } else if ((parseInt(values.end.substr(-4), 10) === parseInt(values.start.substr(-4), 10))) {
+    if ((parseInt(values.end.substr(0,2), 10) < parseInt(values.start.substr(0,2), 10))) {
+      errors.end = 'End date must be after start date';
+    }
+  }
+
   if (values.source && values.source.length < 8) {
     errors.source = 'Source should be longer, eg "IRS 990 2017"';
   }

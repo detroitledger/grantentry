@@ -93,11 +93,11 @@ class Addgrantform extends Component {
   }
 
   render() {
-    const { invalid, pristine, submitting, } = this.props;
+    const { invalid, pristine, submitting } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           <Field
             name="start"
             component={renderTextField}
@@ -109,7 +109,7 @@ class Addgrantform extends Component {
             label="End Date"
             required />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Field
             name="funder"
             component={renderTextField}
@@ -146,7 +146,7 @@ class Addgrantform extends Component {
             label="Source"
             required />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '1em', }}>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '1em' }}>
           <Button type="submit" disabled={invalid || pristine || submitting} variant="raised" color="primary" size="large">
             Submit
           </Button>

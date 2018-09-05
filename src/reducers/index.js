@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
 
 import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
 import user from './user';
 import tour from './tour';
 import grants from './grants';
+import orgs from './orgs';
 
 const listByFilter = combineReducers({
   all: createList('all'),
@@ -30,6 +32,8 @@ const rootReducer = combineReducers({
   router,
   preTourState,
   grants,
+  orgs,
+  form: formReducer,
 });
 
 export default rootReducer;

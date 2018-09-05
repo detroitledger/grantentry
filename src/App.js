@@ -19,12 +19,14 @@ export class UnwrappedApp extends Component {
     loggedIn: PropTypes.bool.isRequired,
     fetchUserpdfs: PropTypes.func.isRequired,
     fetchCurrentUser: PropTypes.func.isRequired,
+    fetchOrgs: PropTypes.func.isRequired,
   };
 
   fetchData() {
-    const { fetchUserpdfs, fetchCurrentUser } = this.props;
+    const { fetchUserpdfs, fetchCurrentUser, fetchOrgs } = this.props;
     fetchCurrentUser();
     fetchUserpdfs('all');
+    fetchOrgs();
   }
 
   loading = () => (

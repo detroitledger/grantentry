@@ -2,8 +2,8 @@ import fetch from 'isomorphic-fetch';
 
 import LedgerApi from './LedgerApi';
 
-export const API_HOST = 'https://data.detroitledger.org';
-//export const API_HOST = 'https://localhost:3000';
+//export const API_HOST = 'https://data.detroitledger.org';
+export const API_HOST = 'https://localhost:3000';
 
 /**
  *  Mutate an array of responses into an object keyed by their IDs.
@@ -89,4 +89,25 @@ export const createGrant = (grantToBe) => {
       return client.createGrant(drupalized, token);
     })
     .then(response => client.grantById(response.nid));
+};
+
+export const fetchOrgs = async () => {
+  const client = new LedgerApi({ apiUrl: `${API_HOST}/api/1.0`, baseUrl: API_HOST });
+
+  let orgs = [];
+  const limit = 1000;
+  let offset = 0;
+  let count = 0;
+
+  do {
+    const page = await client.organizations(limit, offset);
+    orgs = [
+      ...orgs,
+      ...page,
+    ];
+    offset += limit;
+    count = Object.keys(page).length;
+  } while (count === limit);
+
+  return normalizeToObject(orgs);
 };

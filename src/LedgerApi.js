@@ -44,6 +44,18 @@ export default class LedgerApi {
       .then(data => data.orgs ? data.orgs.map(LedgerApi.orgTemplate) : []);
   }
 
+  /**
+   * @param {Number} limit
+   * @param {Number} offset
+   * @returns {Promise}
+   */
+  async organizations(limit, offset) {
+    const url = `${this.apiUrl}/orgs.json?limit=${limit}&offset=${offset}`;
+
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => data.orgs ? data.orgs.map(LedgerApi.orgTemplate) : []);
+  }
 
   /**
    * @param {Number} ein

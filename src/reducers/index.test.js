@@ -31,6 +31,8 @@ const emptyStore = {
   tour: { active: false, step: 1 },
   preTourState: {},
   grants: { isCreating: false, byId: {} },
+  orgs: { isFetching: false, byId: {} },
+  form: {},
 };
 
 describe('big ol reducer', () => {

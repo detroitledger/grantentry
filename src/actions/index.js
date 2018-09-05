@@ -67,6 +67,28 @@ export const createGrant = (grantData) => (dispatch) => {
     );
 };
 
+export const fetchOrgs = () => (dispatch) => {
+  dispatch({
+    type: 'FETCH_ORGS_REQUEST',
+  });
+
+  return api.fetchOrgs()
+    .then(
+      response => {
+        dispatch({
+          type: 'FETCH_ORGS_SUCCESS',
+          response,
+        });
+      },
+      error => {
+        dispatch({
+          type: 'FETCH_ORGS_FAILURE',
+          error,
+        });
+      }
+    );
+};
+
 export const fetchCurrentUser = () => (dispatch) => {
   dispatch({
     type: 'FETCH_CURRENTUSER_REQUEST',

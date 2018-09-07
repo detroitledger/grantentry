@@ -20,6 +20,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script type="text/javascript">
+      window.GOOGLE_CLIENT_ID = "%REACT_APP_GOOGLE_CLIENT_ID%";
+      window.SERVER_ADDRESS = "%REACT_APP_SERVER_ADDRESS%";
+    </script>
     <title>Detroit Ledger: Grant Entry</title>
   </head>
   <body>

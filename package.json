@@ -24,6 +24,10 @@
       "target": "https://data.detroitledger.org",
       "secure": false
     },
+    "/getGoogleUser": {
+      "target": "http://localhost:8081",
+      "secure": false
+    },
     "/grantentrypdfs": {
       "target": "https://data.detroitledger.org",
       "secure": false,
@@ -48,7 +52,8 @@
     "react-router-redux": "next",
     "react-scripts": "1.0.16",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "store": "^2.0.12"
   },
   "scripts": {
     "start": "react-scripts start",

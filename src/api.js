@@ -89,3 +89,16 @@ export const createGrant = (grantToBe) => {
     })
     .then(response => client.grantById(response.nid));
 };
+
+export const authApiCall = async (path, id_token) => {
+  const res = await fetch(process.env.REACT_APP_API_HOST + '/' + path, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth-Token': id_token,
+    },
+  });
+
+  const json = await res.json();
+
+  return json;
+};

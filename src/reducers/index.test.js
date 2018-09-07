@@ -27,6 +27,12 @@ const emptyStore = {
     name: null,
     isFetching: true,
   },
+  auth: {
+    idToken: null,
+    user: null,
+    isFetching: false,
+    error: null,
+  },
   router: { location: null },
   tour: { active: false, step: 1 },
   preTourState: {},

@@ -7,5 +7,13 @@ import App from './App';
 const mockStore = configureStore();
 
 it('renders', () => {
-  shallow(<App store={mockStore({ user: { id: null, isFetching: true } })} />);
+  shallow(<App store={mockStore({
+    user: {
+      id: null,
+      isFetching: true,
+    },
+    auth: {
+      error: null,
+    },
+  })} />);
 });

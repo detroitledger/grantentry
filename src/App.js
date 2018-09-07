@@ -4,64 +4,87 @@ import { connect } from 'react-redux';
 import './App.css';
 
 import * as actions from './actions';
-import PdfviewerContainer from './components/PdfviewerContainer';
-import Addgrantframe from './components/Addgrantframe';
-import Topbar from './components/Topbar';
-import Tour from './containers/Tour';
+//import PdfviewerContainer from './components/PdfviewerContainer';
+//import Addgrantframe from './components/Addgrantframe';
+//import Topbar from './components/Topbar';
+//import Tour from './containers/Tour';
 
 export class UnwrappedApp extends Component {
   componentDidMount() {
-    this.fetchData();
+    this.props.getUserWithSavedToken();
   }
 
   static propTypes = {
     isFetchingUser: PropTypes.bool.isRequired,
     loggedIn: PropTypes.bool.isRequired,
+    gooUser: PropTypes.object,
+    errorAuth: PropTypes.object,
+    isFetchingAuth: PropTypes.object,
+    getUserWithSavedToken: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    callGoogleAuthEndpoint: PropTypes.func.isRequired,
     fetchUserpdfs: PropTypes.func.isRequired,
     fetchCurrentUser: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
   };
 
-  fetchData() {
-    const { fetchUserpdfs, fetchCurrentUser } = this.props;
-    fetchCurrentUser();
-    fetchUserpdfs('all');
-  }
-
-  loading = () => (
-    <div className="bigmessage">Loading...</div>
+  authInProgress = () => (
+    <div>
+      <button className="bigmessage">
+        Authenticating...
+      </button>
+    </div>
   );
 
   loginPrompt = () => (
-    <a className="bigmessage" href="/user">Log in to start entering grants</a>
+    <div>
+      <button className="bigmessage" onClick={this.props.login}>
+        Log in to start entering grants
+        {this.props.errorAuth &&
+          <div>Auth error: {this.props.errorAuth}</div>
+        }
+      </button>
+    </div>
   );
 
   render() {
-    if (this.props.isFetchingUser) return this.loading();
-    if (!this.props.loggedIn) return this.loginPrompt();
+    if (this.props.isFetchingAuth) return this.authInProgress();
 
-    return (
-      <div className="App">
-        <Tour />
-        <header className="Topbar-container">
-          <Topbar/>
-        </header>
-        <main className="wrapper">
-          <div className="Pdfviewer-container" role="complementary">
-            <PdfviewerContainer />
-          </div>
-          <div className="Addgrantframe-container" role="main">
-            <Addgrantframe />
-          </div>
-        </main>
-      </div>
-    );
+    // new homepage
+    if (!this.props.gooUser) {
+      return this.loginPrompt();
+    } else {
+      return (
+        <div className="App">
+          <header className="Topbar-container">
+            TODO: Topbar
+            <button onClick={this.props.logout}>Log out</button>
+          </header>
+          <main className="wrapper">
+            <div className="Pdfviewer-container" role="complementary">
+              TODO: PdfviewerContainer
+            </div>
+            <div className="Addgrantframe-container" role="main">
+              TODO: Addgrantframe
+              <div>{JSON.stringify(this.props.gooUser)}</div>
+              <div>
+                <button onClick={this.props.callGoogleAuthEndpoint.bind(this, 'getGoogleUser')}>hi</button>
+              </div>
+            </div>
+          </main>
+        </div>
+      );
+    }
   }
 }
 
 export default connect(
-  ({ user }) => ({
+  ({ user, auth }) => ({
     loggedIn: user.id !== null,
     isFetchingUser: user.isFetching,
+    errorAuth: auth.error,
+    isFetchingAuth: auth.isFetching,
+    gooUser: auth.user,
   }),
   actions
 )(UnwrappedApp);

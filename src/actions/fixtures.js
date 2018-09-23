@@ -33,6 +33,4 @@ export const MOCK_API_RESPONSES = {
     'year': 2389,
     'currentpg': 6,
   },
-  systemConnect: {"sessid":"-vX7RQKeRJfC1I4KxfRYNWt9PeCIJ-ttWGBSMjyzUhw","session_name":"SESS09cd13774d4f93f98a0d58c97ec437ad","user":{"uid":"1","name":"admin","mail":"anonyben@gmail.com","theme":"","signature":"","signature_format":"filtered_html","created":"1397950143","access":"1505922306","login":"1504901827","status":"1","timezone":"America/Detroit","language":"","picture":"0","init":"admin@example.com","data":false,"uuid":"4ce1c447-25d6-449f-a3ad-8976ce9efb0b","sid":"-vX7RQKeRJfC1I4KxfRYNWt9PeCIJ-ttWGBSMjyzUhw","ssid":"","hostname":"127.0.0.1","timestamp":"1505922257","cache":"0","session":"pass_reset_1|s:43:\"F6OgKByii7dqd7H1wypLlvGDjUg3Rnt_IxhIUEMsOLY\";","roles":{"2":"authenticated user","3":"administrator"}}},
-  normalizedSystemConnect: { name: 'admin', id: '1' },
 };

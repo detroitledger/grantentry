@@ -3,7 +3,6 @@ import { routerReducer as router } from 'react-router-redux';
 
 import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
-import user from './user';
 import tour from './tour';
 import grants from './grants';
 import auth from './auth';
@@ -26,7 +25,6 @@ const preTourState = (state = {}, action = { type: null }) => {
 const rootReducer = combineReducers({
   byId,
   listByFilter,
-  user,
   tour,
   router,
   preTourState,

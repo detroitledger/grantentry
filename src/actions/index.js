@@ -69,26 +69,6 @@ export const createGrant = (grantData) => (dispatch) => {
     );
 };
 
-export const fetchCurrentUser = () => (dispatch) => {
-  dispatch({
-    type: 'FETCH_CURRENTUSER_REQUEST',
-  });
-
-  return api.fetchCurrentUser().then(
-    response => {
-      dispatch({
-        type: 'FETCH_CURRENTUSER_SUCCESS',
-        response,
-      });
-    },
-    () => {
-      dispatch({
-        type: 'FETCH_CURRENTUSER_FAILURE',
-      });
-    }
-  );
-};
-
 export const tourSetStep = step => (dispatch) => {
   if (step === 2) {
     // Go to our sample entry

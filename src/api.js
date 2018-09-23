@@ -54,31 +54,6 @@ export const updateUserpdf = (id, currentpg, done) => {
   });
 };
 
-export const fetchCurrentUser = () => {
-  const client = new LedgerApi({ apiUrl: `${API_HOST}/api/1.0`, baseUrl: API_HOST });
-
-  return client.getToken()
-  .then(function(token) {
-    return fetch(`${API_HOST}/api/1.0/system/connect.json`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-type': 'application/json',
-        'X-CSRF-Token': token,
-      },
-    });
-  })
-  .then((response) => {
-    return response.json();
-  })
-  .then((rawSessioninfo) => {
-    return Promise.resolve({
-      id: rawSessioninfo.user.uid,
-      name: rawSessioninfo.user.name,
-    });
-  });
-};
-
 export const createGrant = (grantToBe) => {
   const client = new LedgerApi({ apiUrl: `${API_HOST}/api/1.0`, baseUrl: API_HOST });
 

@@ -22,11 +22,6 @@ const emptyStore = {
       isFetching: false,
     },
   },
-  user: {
-    id: null,
-    name: null,
-    isFetching: true,
-  },
   auth: {
     idToken: null,
     user: null,
@@ -110,26 +105,6 @@ describe('big ol reducer', () => {
     });
   });
 
-  it('should handle FETCH_CURRENTUSER_REQUEST', () => {
-    const userpart = reducer(
-      {},
-      {
-        type: 'FETCH_CURRENTUSER_REQUEST',
-      }
-    ).user;
-    expect(userpart).toEqual({ id: null, name: null, isFetching: true });
-  });
-
-  it('should handle FETCH_CURRENTUSER_SUCCESS', () => {
-    const userpart = reducer(
-      {},
-      {
-        type: 'FETCH_CURRENTUSER_SUCCESS',
-        response: MOCK_API_RESPONSES.normalizedSystemConnect,
-      }
-    ).user;
-    expect(userpart).toEqual({ id: '1', name: 'admin', isFetching: false });
-  });
 });
 
 describe('getHasPDFs', () => {

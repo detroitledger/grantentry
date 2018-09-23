@@ -15,16 +15,13 @@ export class UnwrappedApp extends Component {
   }
 
   static propTypes = {
-    isFetchingUser: PropTypes.bool.isRequired,
-    loggedIn: PropTypes.bool.isRequired,
     gooUser: PropTypes.object,
     errorAuth: PropTypes.object,
-    isFetchingAuth: PropTypes.object,
+    isFetchingAuth: PropTypes.bool,
     getUserWithSavedToken: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     callGoogleAuthEndpoint: PropTypes.func.isRequired,
     fetchUserpdfs: PropTypes.func.isRequired,
-    fetchCurrentUser: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
   };
 
@@ -79,9 +76,7 @@ export class UnwrappedApp extends Component {
 }
 
 export default connect(
-  ({ user, auth }) => ({
-    loggedIn: user.id !== null,
-    isFetchingUser: user.isFetching,
+  ({ auth }) => ({
     errorAuth: auth.error,
     isFetchingAuth: auth.isFetching,
     gooUser: auth.user,
